@@ -1,0 +1,12 @@
+The main idea is to include priority_queue.h in the tests and compile against the different structures as desired.
+Different ifdefs are used to declare different structs, definitions and auxiliary functions.
+Tests should only use the common priority queue interface and NOT the auxiliary functions that might be defined for each implementation.
+In the same way, test code should not access the structures' inner fields unless you found a bug and you know what you're doing.
+
+Compilation example: (in src/tests)
+
+gcc -g -D_BINARY_HEAP pq_basic_test ../structures/binomial_heap.c -o test
+
+Extra compilation notes:
+
+- Binomial heap requires linking against math library (-lm flag)
