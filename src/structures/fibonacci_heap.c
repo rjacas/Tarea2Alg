@@ -158,8 +158,6 @@ struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue
 }
 
 
-
-//****************************Fibonacci priority_queue Operations ************************************************************
 struct priority_queue *new_pq(){
 	struct priority_queue *pq;
 	pq = (struct priority_queue*) malloc(sizeof(struct priority_queue));
@@ -290,76 +288,6 @@ void put_node(struct node *tnode){
 	temp->link = first;
 	first = temp;
 	node_count = node_count++;
-}
-
-void Printroot_list(struct priority_queue *H){	
-	if(H->root_list != NULL)	{
-		struct node *temp;
-		temp = H->root_list;
-		printf("%d",temp->key);
-		if(temp->right != temp){
-			temp = temp->right;
-			while(temp != H->root_list){
-				printf("%d\n",temp->key);
-				temp = temp->right;
-			}
-		}
-	}
-}
-
-void PrintTree(struct node *HN,int n){	
-	struct node *t = HN;
-	int i;
-	do{
-		printf("%d",t->key);
-		if(t->tag !=0)
-			printf("*");
-		else
-			printf(" ");		
-		if(t->child !=NULL){
-			printf("=>\t");
-			PrintTree(t->child,n+1);
-		}
-		if(t->right != HN){
-			printf("\n");
-			for(i=0;i<n;i++)
-				printf("\t");
-			printf("|");
-			printf("\n");
-			for(i=0;i<n;i++)
-				printf("\t");
-		}
-		t=t->right;
-	}
-	while(t!= HN);
-}
-
-void PrintHeap(struct priority_queue *H){	
-	printf("\n");
-	printf("\n");
-	if(H->root_list !=NULL)
-		PrintTree(H->root_list,0);
-	else
-		printf("priority_queue is Empty.");
-	printf("\n");
-}
-
-void PrintNode(struct node *A){
-	printf("\n Node Key : %d",A->key);
-	if(A->left != NULL)
-		printf(" lsib L : %d",A->left->key);
-	else printf(" lsib l : NULL ");
-	if(A->right != NULL)
-		printf(" lsib R : %d",A->right->key);
-	else printf(" lsib R : NULL ");
-	printf(" Degree :%d",A->degree);
-	if(A->child != NULL)
-		printf(" Child :%d",A->child->key);
-	else printf(" Child : NULL");
-	if(A->parent!= NULL)
-		printf(" Parent :%d",A->parent->key);
-	else printf(" Parent :NULL ");
-	printf(" tag :%d \n",A->tag);
 }
 
 
