@@ -68,6 +68,12 @@ void merge_all_trees_rec(struct priority_queue *p, struct node *n);
 
 /* ===================== Van Emde Boas Tree ===================== */
 #ifdef _VAN_EMDE_BOAS
+
+#ifndef _UNIVERSE
+#define _UNIVERSE 100
+#endif
+struct priority 
+
 #endif
 
 /* 
