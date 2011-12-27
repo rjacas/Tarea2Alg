@@ -7,40 +7,110 @@
 
 
 struct priority_queue *pq_new(int size) {
-    struct priority_queue *pq;
-    pq = (struct priority_queue *)malloc(sizeof(struct priority_queue));
-    pq->total_trees = 0;
-    pq->n_elems = 0;
-
-    return pq;
+	struct priority_queue *pq;
+	init_n = size;
+	make_node_list(size);
+  pq = new_pq();
+  return pq;
 }
 
 int pq_empty(struct priority_queue *p) {
-    return ((p->n_elems == 0)? TRUE : FALSE);
+  return ((p->n_nodes == 0)? TRUE : FALSE);
 }
 
 void pq_insert(struct priority_queue *pq, int new_elem) {
-    struct node *new_node;
-    new_node = (struct node *)malloc(sizeof(struct node));
+	if(new_elem < MAXKEY && nodes_array[new_elem] == NULL){	
+		struct node *new_node = get_node(first);
+		nodes_array[new_elem] = new_node;
 		new_node->parent = NULL;
-    new_node->left = NULL;
-		new_node->right = NULL;
 		new_node->child = NULL;
-    new_node->value = new_elem;
-    new_node->degree = 0;
-		new_node->mark = FALSE;
-    insert_tree(pq, new_node);
-	  pq->total_trees++;
-    pq->n_elems++;		
+		new_node->degree = 0;
+		new_node->key = new_elem;
+		new_node->tag = 0;
+		new_node->left = new_node;
+		new_node->right = new_node;		
+		if(pq->n_nodes == 0){
+			pq->root_list = new_node;
+			pq->n_nodes = 1;
+		}
+		else{
+			new_node->left = pq->root_list;
+			new_node->right = pq->root_list->right;
+			pq->root_list->right = new_node;
+			new_node->right->left = new_node;
+			if((pq->root_list->key) > (new_node->key))
+				pq->root_list = new_node;
+			pq->n_nodes+=1;
+		}
+	}
+	#ifdef DEBUG
+	else if(new_elem < MAXKEY && nodes_array[new_elem] != NULL)
+		printf("Key already exists in priority_queue. Duplicate Key Not Allowed. Enter a different key.\n");
+	else
+		printf("Key %d can not be inserted. Maximum allowable key is %d\n",new_elem,MAXKEY);
+	#endif
 }
 
 int pq_extract(struct priority_queue *pq) {
-	int min;	
-	struct node *aux;
-	aux = cut_node_root(pq,pq->min);
-	min = aux->value;
-	free(aux);
-	return min;
+	if(pq->root_list != NULL){
+		int temp;
+		struct node *tempptr,*t1,*t2;
+		temp = pq->root_list->key;
+		if((pq->root_list->child == NULL) && (pq->n_nodes == 1)){
+			put_node(pq->root_list);
+			pq->n_nodes = 0;
+			pq->root_list = NULL;
+		}
+		else if ((pq->root_list->child == NULL) && (pq->n_nodes > 1)){	
+			pq->root_list->left->right = pq->root_list->right;
+			pq->root_list->right->left = pq->root_list->left;
+			tempptr = pq->root_list;
+			pq->root_list = pq->root_list->left;
+			put_node(tempptr);
+			pq->n_nodes -= 1;
+			if(pq->root_list->key != 3)
+				consolidate(pq);
+		}
+		else if(pq->root_list->child != NULL){
+			t1 = pq->root_list->child;
+			while(t1 != t1->right ){
+				t2=t1->right;
+				t1->right = t2->right;
+				t2->right->left = t1;
+			
+				t2->right= pq->root_list->right;
+				t2->left = pq->root_list;
+				t2->parent=NULL;
+				t2->tag = 0;
+
+				pq->root_list->right->left = t2;
+				pq->root_list->right = t2;
+				pq->n_nodes += 1;
+			}
+				t1->right= pq->root_list->right;
+				t1->left = pq->root_list;
+				t1->parent = 0;
+				t1->tag = 0;
+				pq->root_list->right->left = t1;
+				pq->root_list->right = t1;
+				pq->n_nodes += 1;
+				pq->root_list->degree = 0;
+				t2 = pq->root_list;
+				pq->root_list->left->right = pq->root_list->right;
+				pq->root_list->right->left = pq->root_list->left;
+				pq->root_list = pq->root_list->right;
+				put_node(t2);
+				pq->n_nodes -=1;
+				consolidate(pq);
+		}
+		return temp;
+	}
+	#ifdef DEBUG
+	else{
+		printf("priority_queue is Empty.\n");
+		return -1;
+	}
+	#endif
 }
 
 void pq_free(struct priority_queue *p) {//mal
@@ -57,127 +127,239 @@ void pq_free(struct priority_queue *p) {//mal
     free(p);*/
 }
 
-priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2){
-	struct node *i, *aux;	
-	i = p2->min->right;
-	do{
-			if(i != NULL){
-				aux = cut_node_root(p2, i);
-				i = i->right;	
-				insert_tree(p1,aux);		
-			}	
+struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2){	
+	struct priority_queue *p3;
+	struct node *t1;
+	if(p1->root_list == NULL){	
+		p3 = p2;
+		p2 = NULL;
 	}
-	while(i != NULL && i != p2->min);
-	aux = cut_node_root(p2, p2->min);
-	insert_tree(p1,aux);
-}
-
-void insert_tree(struct priority_queue *p, struct node *new_node){
-	struct node *aux;	
-	if(p->min == NULL)
-		p->min = new_node;
+	else if(p2->root_list ==NULL){	
+		p3 = p1;
+		p1 = NULL;
+	}
+	else if (p1->root_list == NULL && p2->root_list == NULL)
+		p3 = NULL;
 	else{
-		new_node->left = p->min;
-		if(p->min->right != NULL){
-			new_node->right = p->min->right;
-			p->min->right->left = new_node;							
-		}
-		else{
-			p->min->left = new_node;
-			new_node->right = p->min;
-						
-		}
-		p->min->right = new_node;	
-	}
-	if(new_node->value < p->min->value)
-		p->min = new_node;
+		p3 = p1;	
+		p1->root_list->right->left = p2->root_list->left;
+		p2->root_list->left->right = p1->root_list->right;
+		p1->root_list->right = p2->root_list;
+		p2->root_list->left=p1->root_list;
 
-		new_node->mark = FALSE;
+		if((p2->root_list->key) < (p1->root_list->key))
+			p1->root_list = p2->root_list;
+		p3->n_nodes = p1->n_nodes + p2->n_nodes;
+
+		p2 = NULL;
+		p1 = NULL;
+	}
+	return p3;
 }
 
-void insert_sub_tree(struct node *par, struct node *chi){
-	chi->right->left = chi->left;
-	chi->left->right = chi->right;
-	if(par->child == NULL){
-		par->child = chi;
-		chi->parent = par;
-		chi->left = NULL;
-		chi->right = NULL;
-		par->degree += chi->degree + 1;
-	}
-	else{
-		chi->left = par->child->right;
-		if(par->child->right != NULL){
-			chi->right = par->child->right;
-			par->child->right->left = chi;							
-		}
-		else{
-			par->child->left = chi;
-			chi->right = par->child;
-						
-		}
-		par->child->right = chi;
-		par->degree += chi->degree + 1;	
-	}
+
+
+//****************************Fibonacci priority_queue Operations ************************************************************
+struct priority_queue *new_pq(){
+	struct priority_queue *pq;
+	pq = (struct priority_queue*) malloc(sizeof(struct priority_queue));
+	pq->root_list = NULL;
+	pq->n_nodes = 0;
+	#ifdef DEBUG
+	printf("PQ %d created.\n",hn);
+	#endif
+	hn += 1;
+	return pq;
 }
 
-struct node *cut_node_root(struct priority_queue *pq, struct node *tnode){
-	struct node *i,*aux;	
-	if(tnode == NULL) return;
+int get_min(struct priority_queue *pq){	
+	return pq->root_list->key;
+}
 
-	if(tnode->degree > 0){
-		tnode->child->parent = NULL;
-		
-		aux = i = tnode->child->right;
-		do{
-			if(i->right != NULL){
-				aux = i;
-				i->left->right = i->right;
-				i->right->left = i->left;
-				insert_tree(pq, i);					
-			}
-			i = i->right;
-		}
-		while(aux != NULL && aux != tnode->child);
-		insert_tree(pq, tnode->child);	
-	}	
-	if(tnode->right != NULL){
-		tnode->right->left = tnode->left;
-		tnode->left->right = tnode->right;
+struct node *link_node(struct node *t1,struct node *t2){
+	if((t1->child == NULL) && (t1->degree == 0)){	
+		t1->child = t2;
+		t1->degree += 1;
+		t2->parent = t1;
+		t2->left = t2;
+		t2->right = t2;
+		return t1;
 	}
-	pq->total_trees--;
-	pq->n_elems--;
-	consolidate(pq);
-	return tnode;
+	else{	
+		t2->parent = t1;
+		t1->degree += 1;
+		t2->right = t1->child->right;
+		t2->left = t1->child;
+		t1->child->right->left = t2;
+		t1->child->right = t2;
+		return t1;
+	}
 }
 
 void consolidate(struct priority_queue *pq){
-	int max_degree;
-	struct node *i,*aux;
-	struct node **degrees;
-	max_degree = (int)ceil(log(pq->n_elems)/log((1+sqrt(5))/2));
-	degrees = (struct node **) malloc(sizeof(struct node *) * max_degree);
-	i = pq->min;
-	degrees[i->degree] = i;
-	do{
-			if(i != NULL){
-				if(degrees[i->degree] != NULL)
-					degrees[i->degree] = i;
-				else{
-					if(degrees[i->degree]->value <= i->value){
-						aux = cut_node_root(pq, degrees[i->degree]);
-						degrees[i->degree] = i;	
-						insert_sub_tree(i, aux);
-					}
-					else{
-						aux = cut_node_root(pq,i);	
-						insert_sub_tree(degrees[i->degree], aux);						
-					}		
-				}			
-			}
-			i = i->right;		
+	int i,x,d;
+	
+	struct node *t1,*t2,*temp;
+	x = pq->n_nodes * (ceil(log(init_n)/log((1+sqrt(5))/2)));
+	struct node *array[x];
+
+	for(i = 0; i < x; i++)
+		array[i] = NULL;
+	
+	
+	t1 = pq->root_list;
+	temp = t1->right;
+
+	for(i = 1; i <= pq->n_nodes; i++){	
+		d = t1->degree;
+		while(array[d] != 0){
+			t2 = array[d];
+			if(t1->key < t2->key)	
+				t1 = link_node(t1,t2);
+			else
+				t1 = link_node(t2,t1);
+			array[d] = 0;
+			d = d+1;
+		}
+		array[d] = t1;
+		t1 = temp;
+		temp = temp->right;
 	}
-	while(i != NULL && i != pq->min);
-	free(degrees);
+	pq->root_list = NULL;
+	pq->n_nodes = 0;
+	for(i = 0; i < x; i++){
+		if(array[i] != 0){
+			if(pq->root_list == NULL){
+				pq->root_list = array[i];
+				pq->root_list->left = pq->root_list->right = pq->root_list;
+				pq->n_nodes = 1;
+			}
+			else{	
+				array[i]->left = pq->root_list;
+				array[i]->right = pq->root_list->right;
+				pq->root_list->right->left = array[i];
+				pq->root_list->right = array[i];
+				pq->n_nodes += 1;
+				if(array[i]->key < pq->root_list->key)
+					pq->root_list = array[i] ;
+			}
+		}
+	}
 }
+
+struct l_node *node_list(unsigned int n){//arreglar
+	int i;
+	struct l_node *FreeListHead, *Temp;
+	struct node *Node;
+	FreeListHead = NULL;
+	node_created_flag=TRUE;
+	for(i = 1; i <= n;i++)	{
+		Temp=(struct l_node *) malloc(sizeof(struct l_node));
+		Node =(struct node *) malloc(sizeof(struct node));
+	
+		Temp->link=FreeListHead;
+		Temp->addr=Node;
+		FreeListHead=Temp;
+	}
+	node_count=n;
+	#ifdef DEBUG
+	printf("%d Nodes Created.\n",n);
+	#endif
+	return FreeListHead;
+}
+
+void make_node_list(int n){	
+	first = node_list(n);
+}
+
+struct node *get_node(){
+	struct l_node *temp;
+	struct node *tnode;
+	tnode = first->addr;
+	temp = first;
+	first = first->link;
+	free(temp);
+	node_count = node_count--;
+	return tnode;
+}
+
+void put_node(struct node *tnode){
+	struct l_node *temp;
+	temp = (struct l_node *) malloc(sizeof(struct l_node));
+	temp->addr = tnode;
+	temp->link = first;
+	first = temp;
+	node_count = node_count++;
+}
+
+void Printroot_list(struct priority_queue *H){	
+	if(H->root_list != NULL)	{
+		struct node *temp;
+		temp = H->root_list;
+		printf("%d",temp->key);
+		if(temp->right != temp){
+			temp = temp->right;
+			while(temp != H->root_list){
+				printf("%d\n",temp->key);
+				temp = temp->right;
+			}
+		}
+	}
+}
+
+void PrintTree(struct node *HN,int n){	
+	struct node *t = HN;
+	int i;
+	do{
+		printf("%d",t->key);
+		if(t->tag !=0)
+			printf("*");
+		else
+			printf(" ");		
+		if(t->child !=NULL){
+			printf("=>\t");
+			PrintTree(t->child,n+1);
+		}
+		if(t->right != HN){
+			printf("\n");
+			for(i=0;i<n;i++)
+				printf("\t");
+			printf("|");
+			printf("\n");
+			for(i=0;i<n;i++)
+				printf("\t");
+		}
+		t=t->right;
+	}
+	while(t!= HN);
+}
+
+void PrintHeap(struct priority_queue *H){	
+	printf("\n");
+	printf("\n");
+	if(H->root_list !=NULL)
+		PrintTree(H->root_list,0);
+	else
+		printf("priority_queue is Empty.");
+	printf("\n");
+}
+
+void PrintNode(struct node *A){
+	printf("\n Node Key : %d",A->key);
+	if(A->left != NULL)
+		printf(" lsib L : %d",A->left->key);
+	else printf(" lsib l : NULL ");
+	if(A->right != NULL)
+		printf(" lsib R : %d",A->right->key);
+	else printf(" lsib R : NULL ");
+	printf(" Degree :%d",A->degree);
+	if(A->child != NULL)
+		printf(" Child :%d",A->child->key);
+	else printf(" Child : NULL");
+	if(A->parent!= NULL)
+		printf(" Parent :%d",A->parent->key);
+	else printf(" Parent :NULL ");
+	printf(" tag :%d \n",A->tag);
+}
+
 
