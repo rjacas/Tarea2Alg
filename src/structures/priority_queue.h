@@ -64,6 +64,25 @@ void merge_all_trees_rec(struct priority_queue *p, struct node *n);
 
 /* ===================== Fibonacci Heap ===================== */
 #ifdef _FIBONACCI_HEAP
+struct node{
+    struct node *parent;
+    struct node *left, *right;
+		struct node *child
+    int value;
+	  int degree;
+		int mark;
+};
+
+struct priority_queue {
+		struct node *min;
+    int total_trees;
+    int n_elems;
+};
+void insert_tree(struct priority_queue *p, struct node *new_node);
+void insert_sub_tree( struct node *par, struct node *chi);
+struct node *cut_node_root(struct priority_queue *pq, struct node *tnode);
+void consolidate(struct priority_queue *pq);
+//void decrease_key(struct priority_queue *p, int x, int k);
 #endif
 
 /* ===================== Van Emde Boas Tree ===================== */
@@ -140,4 +159,9 @@ Params:
     p(IN/OUT) - the priority queue to be freed.
 */
 void pq_free(struct priority_queue *p);
+
+/*
+
+*/
+//priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2);
 #endif
