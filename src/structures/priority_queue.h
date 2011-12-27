@@ -104,11 +104,6 @@ struct l_node *node_list(unsigned int n);
 void make_node_list(int n);
 struct node *get_node();
 void put_node(struct node *tnode);
-//debug//
-void Printroot_list(struct priority_queue *H);
-void PrintTree(struct node *HN,int n);
-void PrintHeap(struct priority_queue *H);
-void PrintNode(struct node *A);
 #endif
 
 /* ===================== Van Emde Boas Tree ===================== */
