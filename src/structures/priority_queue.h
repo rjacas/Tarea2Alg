@@ -78,20 +78,6 @@ struct node *nodes_array[MAXKEY];
 struct l_node *first;
 
 struct node{
-<<<<<<< HEAD
-    struct node *parent;
-    struct node *left, *right;
-    struct node *child
-    int value;
-    int degree;
-    int mark;
-};
-
-struct priority_queue {
-    struct node *min;
-    int total_trees;
-    int n_elems;
-=======
 	int tag;
 	int key;
 	int degree;
@@ -104,7 +90,6 @@ struct priority_queue {
 struct priority_queue{
 	struct node *root_list;
 	int n_nodes;
->>>>>>> 88e691165dd254bcc9b36a32cf3e8d27df1096c6
 };
 
 struct l_node{
