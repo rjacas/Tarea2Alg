@@ -113,18 +113,15 @@ int pq_extract(struct priority_queue *pq) {
 	#endif
 }
 
-void pq_free(struct priority_queue *p) {//mal
-    /*int i;
-    i = 0;
-    while (p->n_elems << i != 0) {
-        if ((p->n_elems << i) & 1) {
-            free(p->trees[i]);
-        }
-        i++;
-    }
-
-    free(p->trees);
-    free(p);*/
+void pq_free(struct priority_queue *p) {
+		struct node *aux;
+		while(1){
+			aux = get_node();
+			free(aux);
+			if(node_count == 0)
+				break;
+		}
+		free(p);
 }
 
 struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2){	
@@ -134,7 +131,7 @@ struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue
 		p3 = p2;
 		p2 = NULL;
 	}
-	else if(p2->root_list ==NULL){	
+	else if(p2->root_list == NULL){	
 		p3 = p1;
 		p1 = NULL;
 	}
@@ -245,25 +242,25 @@ void consolidate(struct priority_queue *pq){
 	}
 }
 
-struct l_node *node_list(unsigned int n){//arreglar
+struct l_node *node_list(unsigned int n){
 	int i;
-	struct l_node *FreeListHead, *Temp;
-	struct node *Node;
-	FreeListHead = NULL;
-	node_created_flag=TRUE;
+	struct l_node *h, *temp;
+	struct node *tnode;
+	h = NULL;
+	node_created_flag = TRUE;
 	for(i = 1; i <= n;i++)	{
-		Temp=(struct l_node *) malloc(sizeof(struct l_node));
-		Node =(struct node *) malloc(sizeof(struct node));
+		temp = (struct l_node *) malloc(sizeof(struct l_node));
+		tnode = (struct node *) malloc(sizeof(struct node));
 	
-		Temp->link=FreeListHead;
-		Temp->addr=Node;
-		FreeListHead=Temp;
+		temp->link = h;
+		temp->addr = tnode;
+		h = temp;
 	}
-	node_count=n;
+	node_count = n;
 	#ifdef DEBUG
 	printf("%d Nodes Created.\n",n);
 	#endif
-	return FreeListHead;
+	return h;
 }
 
 void make_node_list(int n){	

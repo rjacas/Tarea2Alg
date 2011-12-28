@@ -184,7 +184,16 @@ void pq_free(struct priority_queue *p);
 
 #if defined(_BINARY_HEAP) || defined(_BINOMIAL_HEAP) || defined(_FIBONACCI_HEAP)
 /*
-FUUUUUUUUUUUUUUUUUUSION. AAAAHHH!
+	 Merges 2 priority queue into one, updating the global min, and 
+	 dereferencing both p1 and p2, meaning they are consumed in the 
+	 process.  
+
+Params:
+		p1(IN) - the first priority queue to be merged.
+ 	  p2(IN) - the second priority queue to be merged.
+
+Returns:
+    the resulting priority queue, from merging p1 and p2.
 */
 struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2);
 #endif
