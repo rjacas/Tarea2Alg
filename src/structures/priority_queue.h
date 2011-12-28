@@ -30,14 +30,16 @@ struct node{
 struct priority_queue {
     struct node *root;
 };
-
-void splay(struct node *n);
+/* Tree operations */
 struct node *node_insert(struct node *root, struct node *new_node);
 void node_free(struct node *n);
 struct node *node_min(struct node *n);
+
+/* Splay Tree rotations */
+void splay(struct node *n);
 void zag(struct node *son, struct node *dad); 
 void zig(struct node *son, struct node *dad); 
-void zigzig(struct node *son, struct node *dad, struct node *grandpa); 
+void zigzig(struct node *son, struct node *dad, struct node *grandpa);
 void zagzag(struct node *son, struct node *dad, struct node *grandpa); 
 #endif
 
@@ -67,14 +69,14 @@ void merge_all_trees_rec(struct priority_queue *p, struct node *n);
 struct node{
     struct node *parent;
     struct node *left, *right;
-		struct node *child
+    struct node *child
     int value;
-	  int degree;
-		int mark;
+    int degree;
+    int mark;
 };
 
 struct priority_queue {
-		struct node *min;
+    struct node *min;
     int total_trees;
     int n_elems;
 };
@@ -91,7 +93,6 @@ void consolidate(struct priority_queue *pq);
 #ifndef _UNIVERSE
 #define _UNIVERSE 100
 #endif
-struct priority 
 
 #endif
 
