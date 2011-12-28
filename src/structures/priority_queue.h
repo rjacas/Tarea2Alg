@@ -66,7 +66,19 @@ void merge_all_trees_rec(struct priority_queue *p, struct node *n);
 
 /* ===================== Fibonacci Heap ===================== */
 #ifdef _FIBONACCI_HEAP
+
+#define MAXKEY 16777215
+int node_count;
+int node_created_flag;
+int init_n;
+int n;
+int hn;
+int na;
+struct node *nodes_array[MAXKEY];
+struct l_node *first;
+
 struct node{
+<<<<<<< HEAD
     struct node *parent;
     struct node *left, *right;
     struct node *child
@@ -79,12 +91,36 @@ struct priority_queue {
     struct node *min;
     int total_trees;
     int n_elems;
+=======
+	int tag;
+	int key;
+	int degree;
+	struct node *left;
+	struct node *child;
+	struct node *parent;
+	struct node *right;
 };
-void insert_tree(struct priority_queue *p, struct node *new_node);
-void insert_sub_tree( struct node *par, struct node *chi);
-struct node *cut_node_root(struct priority_queue *pq, struct node *tnode);
+
+struct priority_queue{
+	struct node *root_list;
+	int n_nodes;
+>>>>>>> 88e691165dd254bcc9b36a32cf3e8d27df1096c6
+};
+
+struct l_node{
+	struct node *addr;
+	struct l_node *link;
+};
+
+struct priority_queue *new_pq();
+int get_min(struct priority_queue *pq);
+struct node *link_node(struct node *t1,struct node *t2);
 void consolidate(struct priority_queue *pq);
-//void decrease_key(struct priority_queue *p, int x, int k);
+//worse implementation, but it works :D (worse on memory usage)//
+struct l_node *node_list(unsigned int n);
+void make_node_list(int n);
+struct node *get_node();
+void put_node(struct node *tnode);
 #endif
 
 /* ===================== Van Emde Boas Tree ===================== */
@@ -161,8 +197,12 @@ Params:
 */
 void pq_free(struct priority_queue *p);
 
+#if defined(_BINARY_HEAP) || defined(_BINOMIAL_HEAP) || defined(_FIBONACCI_HEAP)
 /*
-
+FUUUUUUUUUUUUUUUUUUSION. AAAAHHH!
 */
-//priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2);
+struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2);
+#endif
+
+
 #endif
