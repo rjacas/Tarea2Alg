@@ -157,7 +157,7 @@ void pq_merge(struct priority_queue *p1, struct priority_queue *p2){//arreglar
 		p2 = NULL;
 		p1 = NULL;
 	}
-	//return p3;
+	p1 = p3;
 }
 
 
