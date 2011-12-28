@@ -85,6 +85,7 @@ struct node{
 	struct node *child;
 	struct node *parent;
 	struct node *right;
+  struct node *back;
 };
 
 struct priority_queue{

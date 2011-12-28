@@ -19,9 +19,17 @@ int pq_empty(struct priority_queue *p) {
 }
 
 void pq_insert(struct priority_queue *pq, int new_elem) {
-	if(new_elem < MAXKEY && nodes_array[new_elem] == NULL){	
-		struct node *new_node = get_node(first);
-		nodes_array[new_elem] = new_node;
+	if(new_elem < MAXKEY){
+		struct node *new_node;
+		if(nodes_array[new_elem] == NULL){
+			new_node = get_node();	
+			nodes_array[new_elem] = new_node;
+		}
+		else{
+			struct l_node *temp;
+			new_node = (struct node *) malloc(sizeof(struct node));		
+			nodes_array[new_elem]->back = new_node;
+		}
 		new_node->parent = NULL;
 		new_node->child = NULL;
 		new_node->degree = 0;
@@ -44,8 +52,6 @@ void pq_insert(struct priority_queue *pq, int new_elem) {
 		}
 	}
 	#ifdef DEBUG
-	else if(new_elem < MAXKEY && nodes_array[new_elem] != NULL)
-		printf("Key already exists in priority_queue. Duplicate Key Not Allowed. Enter a different key.\n");
 	else
 		printf("Key %d can not be inserted. Maximum allowable key is %d\n",new_elem,MAXKEY);
 	#endif
@@ -124,7 +130,7 @@ void pq_free(struct priority_queue *p) {
 		free(p);
 }
 
-struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2){	
+void pq_merge(struct priority_queue *p1, struct priority_queue *p2){//arreglar
 	struct priority_queue *p3;
 	struct node *t1;
 	if(p1->root_list == NULL){	
@@ -151,7 +157,7 @@ struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue
 		p2 = NULL;
 		p1 = NULL;
 	}
-	return p3;
+	//return p3;
 }
 
 
@@ -254,6 +260,7 @@ struct l_node *node_list(unsigned int n){
 	
 		temp->link = h;
 		temp->addr = tnode;
+		tnode->back = NULL;
 		h = temp;
 	}
 	node_count = n;
@@ -270,6 +277,7 @@ void make_node_list(int n){
 struct node *get_node(){
 	struct l_node *temp;
 	struct node *tnode;
+
 	tnode = first->addr;
 	temp = first;
 	first = first->link;
