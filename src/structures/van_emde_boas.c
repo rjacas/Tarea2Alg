@@ -22,7 +22,7 @@ struct priority_queue *pq_new(int size,int universe) {
     p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*p->nhijos);
     
     for (i = 0; i < p->nhijos; i++)
-		p->atrees[i]->pq_child = pq_new_bottom(p->nhijos,p);
+		p->atrees[i].pq_child = pq_new_bottom(p->nhijos,p);
     
     return p;
 }
@@ -46,7 +46,7 @@ struct priority_queue *pq_new_bottom(int size,struct priority_queue *top) {
 		p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*p->nhijos);
 		
 		for (i = 0; i < p->nhijos; i++)
-			p->atrees[i]->pq_child = pq_new_bottom(p->nhijos,p);
+			p->atrees[i].pq_child = pq_new_bottom(p->nhijos,p);
 	}
 	else{
 		p->atrees = NULL;
@@ -59,7 +59,7 @@ int pq_empty(struct priority_queue *p) {
     int i;
     
     for(i = 0; p->nhijos; i++)
-		if(p->atrees[i]->non_empty == 1)
+		if(p->atrees[i].non_empty == 1)
 			return 0;
 			
 	return 1;
@@ -113,10 +113,10 @@ void pq_insert(struct priority_queue *pq, int new_elem) {
 		h = higher(new_elem,pq->universo);
 		l = lower(new_elem,pq->universo);
 	
-		pq_insert (pq->atrees[h]->pq_child,l);
+		pq_insert (pq->atrees[h].pq_child,l);
 	
 	
-		if (pq->atrees[h]->n_elems == 1)
+		if (pq->atrees[h].pq_child->n_elems == 1)
 			pq_insert_in_top(pq->top,h);
 	}
 }
@@ -156,17 +156,17 @@ void pq_up_min(struct priority_queue *pq) {
 	else {			
 		if(pq->atrees != NULL){
 			for(i = 0; i < pq->nhijos; i++)
-				if(pq->atrees[i]->non_empty == 1)
+				if(pq->atrees[i].non_empty == 1)
 					break;
 				
-			pq->min = pq->atrees[i]->min;
+			pq->min = pq->atrees[i].pq_child->min;
 		}
 	}
 	
 	if(i != -1){
-		pq_up_min(pq->atrees[i]->pq_child);
+		pq_up_min(pq->atrees[i].pq_child);
 	
-		if (pq->atrees[i]->n_elems == 0)
+		if (pq->atrees[i].pq_child->n_elems == 0)
 			if(pq->top != NULL)
 				pq_delete_in_top(pq->top,i);
 				
@@ -176,13 +176,13 @@ void pq_up_min(struct priority_queue *pq) {
 
 void pq_delete_in_top(struct priority_queue *pq,int h){
 	
-	pq->atrees[h]->non_empty = 0;
+	pq->atrees[h].non_empty = 0;
 
 }
 
 void pq_insert_in_top(struct priority_queue *pq,int h){
 	
-	pq->atrees[h]->non_empty = 1;
+	pq->atrees[h].non_empty = 1;
 	
 }
 
@@ -192,7 +192,7 @@ void pq_free(struct priority_queue *p) {
     
     if(p->nhijos != 2){
 		for(i = 0; p->nhijos; i++)
-			pq_free(p->atrees[i]->pq_child);
+			pq_free(p->atrees[i].pq_child);
 		
 		free(p->atrees);
 	}
