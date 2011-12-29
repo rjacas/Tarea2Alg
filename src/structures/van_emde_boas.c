@@ -102,34 +102,34 @@ void pq_insert(struct priority_queue *pq, unsigned int new_elem) {
 		}
 	}
 		
-	h = higher(new_elem);
-	l = lower(new_elem);
-
-	pq_insert (pq->atrees[h],l);
-	
-	if (pq->atrees[h]->n_elems == 1)
-		pq_insert_in_top(pq->top,h);
-}
-
-int pq_extract(struct priority_queue *pq) {
-	
-	int min,i;
-	
-	if (pq->universo == 2){
-		min = pq->min;
-		pq_delete(pq,pq->min);
-		return min;
-	}
+	if(pq->atrees != NULL){	
 		
-	for(i = 0; i < algo; i++)
-		if (pq->atrees[i]->non_empty == 1)
-			return pq_extract_min(pq->atrees[i]->pq_child)
+		h = higher(new_elem);
+		l = lower(new_elem);
+	
+		pq_insert (pq->atrees[h],l);
+	
+	
+		if (pq->atrees[h]->n_elems == 1)
+			pq_insert_in_top(pq->top,h);
+	}
+}
 
+void pq_extract(struct priority_queue *pq) {
+	
+	int min;
+	
+	min = pq->min;
+	
+	pq_up_min(pq);
+	
+	return min;
 	
 }
 
-void pq_delete(struct priority_queue *pq, unsigned int del_elem) {
-    int tmp, i, j;
+
+void pq_up_min(struct priority_queue *pq) {
+    int i=-1;
 
 #ifdef DEBUG
     if (pq->n_elems == 0) {
@@ -137,42 +137,34 @@ void pq_delete(struct priority_queue *pq, unsigned int del_elem) {
         exit(1);
     }
 #endif
+	
+	if(pq->n_elems == 1)
+		return;
 
 	pq->n_elems--;
 	
-	if (pq->n_elems == 1) { 
-		
-		if (del_elem == pq->max)
-			pq->max = pq->min;
-		
-		else
-			pq->min = pq->max;
+	if (pq->n_elems == 1) 
+		pq->min = pq->max;
 	
-	}
 	
-	else {
-		
-		if (del_elem == pq->max) {
-			pq->atrees[higher(del_elem)]->max = pq->top->max;
-			pq->max = amax(raiz de U) + max (arbol # amax);
-			del_elem = pq->max;
-		}
-
-		if (del_elem == pq->min) {
-			pq->atrees[higher(del_elem)]->min = pq->top->min;
-			pq->min = amin(raiz de U) + min (arbol # amin);
-			del_elem = pq->min;
+	else {			
+		if(pq->atrees != NULL){
+			for(i = 0; i < pq->nhijos; i++)
+				if(pq->atrees[i]->non_empty == 1)
+					break;
+				
+			pq->min = pq->atrees[i]->min;
 		}
 	}
 	
-	h = higher(new_elem);
-	l = lower(new_elem);
-
-	pq_delete(pq->atrees[h],l);
+	if(i != -1){
+		pq_up_min(pq->atrees[i]);
 	
-	if (pq->atrees[h]->n_elems == 0)
-		if(pq->top != NULL)
-			pq_delete_in_top(pq->top,h);
+		if (pq->atrees[i]->n_elems == 0)
+			if(pq->top != NULL)
+				pq_delete_in_top(pq->top,i);
+				
+	}
 
 }
 

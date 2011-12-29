@@ -137,7 +137,7 @@ struct priority_queue {
 };
 
 struct priority_queue *pq_new_bottom(int size,struct priority_queue *top);
-void pq_delete(struct priority_queue *pq, unsigned int del_elem);
+void pq_up_min(struct priority_queue *pq);
 void pq_delete_in_top(struct priority_queue *pq,int h);
 void pq_insert_in_top(struct priority_queue *pq,int h);
 int higher(int x, int universo);
