@@ -116,6 +116,34 @@ void put_node(struct node *tnode);
 #define _UNIVERSE 100
 #endif
 
+struct array_trees {
+	
+	struct priority_queue *pq_child;
+	int non_empty;
+	
+};
+ 
+ 
+struct priority_queue {
+	
+	int min;
+	int max;
+	int n_elems;	
+	int universo;
+	int nhijos;
+	struct array_trees *atrees;
+	struct priority_queue *top;
+	
+};
+
+struct priority_queue *pq_new_bottom(int size,struct priority_queue *top);
+void pq_delete(struct priority_queue *pq, unsigned int del_elem);
+void pq_delete_in_top(struct priority_queue *pq,int h);
+void pq_insert_in_top(struct priority_queue *pq,int h);
+int higher(int x, int universo);
+int lower(int x, int universo);
+
+
 #endif
 
 /* 
@@ -126,10 +154,12 @@ Params:
     size(IN) - the number of elements the priority_queue will
     be able to hold.
 
+	universe(IN) - the size of the universe (range of numbers
+	that we can have in a priority_queue).
 Returns:
     the newly created priority_queue structure.
 */
-struct priority_queue *pq_new(int size);
+struct priority_queue *pq_new(int size,int universe);
 
 /*
    Tests a priority queue for emptiness

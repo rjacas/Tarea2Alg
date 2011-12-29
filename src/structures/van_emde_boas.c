@@ -1,26 +1,6 @@
 #include "priority.h"
- 
-struct array_trees {
-	
-	struct priority_queue *pq_child;
-	int non_empty;
-	
-};
- 
- 
-struct priority_queue {
-	
-	int min;
-	int max;
-	int n_elems;	
-	int universo;
-	int nhijos;
-	struct array_trees *atrees;
-	struct priority_queue *top;
-	
-};
- 
-struct priority_queue *pq_new(int size) {
+  
+struct priority_queue *pq_new(int size,int universe) {
     struct priority_queue *p;
 	int i;
 	
@@ -28,15 +8,15 @@ struct priority_queue *pq_new(int size) {
     p->n_elems = 0;
     p->min = INT_MIN;
     p->max = INT_MAX;
-    p->universo = size;
+    p->universo = universe;
     p->top = NULL;
     
-    pq->nhijos = (int)((log(size)/log(2))/2);
+    p->nhijos = (int)((log(universe)/log(2))/2);
      
-    pq->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*pq->nhijos);
+    p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*pq->nhijos);
     
     for (i = 0; i < pq->nhijos; i++)
-		pq->atrees[i] = pq_new_bottom(pq->nhijos,p);
+		p->atrees[i] = pq_new_bottom(p->nhijos,p);
     
     return p;
 }
@@ -55,12 +35,12 @@ struct priority_queue *pq_new_bottom(int size,struct priority_queue *top) {
     
     if(size > 2){
     
-		pq->nhijos = (int)((log(size)/log(2))/2);
+		p->nhijos = (int)((log(size)/log(2))/2);
 		 
-		pq->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*pq->nhijos);
+		p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*pq->nhijos);
 		
 		for (i = 0; i < pq->nhijos; i++)
-			pq->atrees[i] = pq_new_bottom(pq->nhijos,p);
+			p->atrees[i] = pq_new_bottom(pq->nhijos,p);
 	}
 	else{
 		pq->atrees = NULL;
@@ -149,7 +129,7 @@ int pq_extract(struct priority_queue *pq) {
 }
 
 void pq_delete(struct priority_queue *pq, unsigned int del_elem) {
-    int tmp, i, j, elem;
+    int tmp, i, j;
 
 #ifdef DEBUG
     if (pq->n_elems == 0) {
@@ -199,7 +179,7 @@ void pq_delete(struct priority_queue *pq, unsigned int del_elem) {
 void pq_delete_in_top(struct priority_queue *pq,int h){
 	
 	pq->atrees[h]->non_empty = 0;
-	
+
 }
 
 void pq_insert_in_top(struct priority_queue *pq,int h){
