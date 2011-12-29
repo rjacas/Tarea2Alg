@@ -1,4 +1,10 @@
-#include "priority.h"
+#include "priority_queue.h"
+#include <math.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
+  
   
 struct priority_queue *pq_new(int size,int universe) {
     struct priority_queue *p;
@@ -13,10 +19,10 @@ struct priority_queue *pq_new(int size,int universe) {
     
     p->nhijos = (int)((log(universe)/log(2))/2);
      
-    p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*pq->nhijos);
+    p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*p->nhijos);
     
-    for (i = 0; i < pq->nhijos; i++)
-		p->atrees[i] = pq_new_bottom(p->nhijos,p);
+    for (i = 0; i < p->nhijos; i++)
+		p->atrees[i]->pq_child = pq_new_bottom(p->nhijos,p);
     
     return p;
 }
@@ -37,13 +43,13 @@ struct priority_queue *pq_new_bottom(int size,struct priority_queue *top) {
     
 		p->nhijos = (int)((log(size)/log(2))/2);
 		 
-		p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*pq->nhijos);
+		p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*p->nhijos);
 		
-		for (i = 0; i < pq->nhijos; i++)
-			p->atrees[i] = pq_new_bottom(pq->nhijos,p);
+		for (i = 0; i < p->nhijos; i++)
+			p->atrees[i]->pq_child = pq_new_bottom(p->nhijos,p);
 	}
 	else{
-		pq->atrees = NULL;
+		p->atrees = NULL;
 	}
     
     return p;
@@ -54,13 +60,13 @@ int pq_empty(struct priority_queue *p) {
     
     for(i = 0; p->nhijos; i++)
 		if(p->atrees[i]->non_empty == 1)
-			return = 0;
+			return 0;
 			
 	return 1;
 }
 
-void pq_insert(struct priority_queue *pq, unsigned int new_elem) {
-    int i, tmp;
+void pq_insert(struct priority_queue *pq, int new_elem) {
+    int i, tmp, h, l;
 
 #ifdef DEBUG
     if (pq->n_elems == pq->elems[0]) {
@@ -87,7 +93,7 @@ void pq_insert(struct priority_queue *pq, unsigned int new_elem) {
 			pq->max = new_elem;
 			return;
 		}
-	
+	}
 	else {
 		if (new_elem < pq->min) {
 			tmp = pq->min;
@@ -104,10 +110,10 @@ void pq_insert(struct priority_queue *pq, unsigned int new_elem) {
 		
 	if(pq->atrees != NULL){	
 		
-		h = higher(new_elem);
-		l = lower(new_elem);
+		h = higher(new_elem,pq->universo);
+		l = lower(new_elem,pq->universo);
 	
-		pq_insert (pq->atrees[h],l);
+		pq_insert (pq->atrees[h]->pq_child,l);
 	
 	
 		if (pq->atrees[h]->n_elems == 1)
@@ -115,7 +121,7 @@ void pq_insert(struct priority_queue *pq, unsigned int new_elem) {
 	}
 }
 
-void pq_extract(struct priority_queue *pq) {
+int pq_extract(struct priority_queue *pq) {
 	
 	int min;
 	
@@ -158,7 +164,7 @@ void pq_up_min(struct priority_queue *pq) {
 	}
 	
 	if(i != -1){
-		pq_up_min(pq->atrees[i]);
+		pq_up_min(pq->atrees[i]->pq_child);
 	
 		if (pq->atrees[i]->n_elems == 0)
 			if(pq->top != NULL)
@@ -195,9 +201,9 @@ void pq_free(struct priority_queue *p) {
 }
 
 int higher(int x, int universo) {
-	return (x & ((~0) >>ceil(log(universo)/log(2)*2)));
+	return (x & ((~0) >>(int)ceil(log(universo)/log(2)*2)));
 }
 
 int lower(int x, int universo) {
-	return (x & ((~0) >>floor(log(universo)/log(2)*2)));
+	return (x & ((~0) >>(int)floor(log(universo)/log(2)*2)));
 }
