@@ -8,26 +8,27 @@
   
 struct priority_queue *pq_new(int size,int universe) {
     struct priority_queue *p;
-	int i;
+	int i,new_universe;
 	
     p = (struct priority_queue *)malloc(sizeof(struct priority_queue));
     p->n_elems = 0;
     p->min = INT_MIN;
     p->max = INT_MAX;
-    p->universo = universe;
+    p->universo = (int)pow(2,universe);
     p->top = NULL;
+    //entonces hay (por ahora ignorando redondeo) 2^(B/2) hijos con 2^(B/2) elementos cada uno
+	
+	p->nhijos = (int)pow(2,universe/2);
     
-    p->nhijos = (int)((log(universe)/log(2))/2);
-     
     p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*p->nhijos);
     
     for (i = 0; i < p->nhijos; i++)
-		p->atrees[i].pq_child = pq_new_bottom(p->nhijos,p);
+		p->atrees[i].pq_child = pq_new_bottom(universe/2,p);
     
     return p;
 }
 
-struct priority_queue *pq_new_bottom(int size,struct priority_queue *top) {
+struct priority_queue *pq_new_bottom(int universe,struct priority_queue *top) {
     struct priority_queue *p;
     int i;
 
@@ -35,18 +36,18 @@ struct priority_queue *pq_new_bottom(int size,struct priority_queue *top) {
     p->n_elems = 0;
     p->min = INT_MIN;
     p->max = INT_MAX;
-    p->universo = size;
+    p->universo = (int)pow(2,universe);
     p->top = top;
     p->nhijos = 0;
     
-    if(size > 2){
+    if(universe > 1){
     
-		p->nhijos = (int)((log(size)/log(2))/2);
-		 
+		p->nhijos = (int)pow(2,universe/2);
+
 		p->atrees = (struct array_trees *)malloc(sizeof(struct array_trees)*p->nhijos);
 		
 		for (i = 0; i < p->nhijos; i++)
-			p->atrees[i].pq_child = pq_new_bottom(p->nhijos,p);
+			p->atrees[i].pq_child = pq_new_bottom(universe/2,p);
 	}
 	else{
 		p->atrees = NULL;
@@ -76,7 +77,7 @@ void pq_insert(struct priority_queue *pq, int new_elem) {
 #endif
 
     pq->n_elems++;
-    
+    printf("ya sume\n");
     if (pq->n_elems == 1) {
 			pq->max = new_elem;
 			pq->min = new_elem;
@@ -96,6 +97,7 @@ void pq_insert(struct priority_queue *pq, int new_elem) {
 	}
 	else {
 		if (new_elem < pq->min) {
+			printf("soy menor que el minimo\n");
 			tmp = pq->min;
 			pq->min = new_elem;
 			new_elem = tmp;
@@ -110,9 +112,13 @@ void pq_insert(struct priority_queue *pq, int new_elem) {
 		
 	if(pq->atrees != NULL){	
 		
+		printf("debo bajar\n");
+		
 		h = higher(new_elem,pq->universo);
 		l = lower(new_elem,pq->universo);
-	
+		
+		printf("h: %d\n",h);
+		printf("l: %d\n",l);
 		pq_insert (pq->atrees[h].pq_child,l);
 	
 	
@@ -164,6 +170,7 @@ void pq_up_min(struct priority_queue *pq) {
 	}
 	
 	if(i != -1){
+		
 		pq_up_min(pq->atrees[i].pq_child);
 	
 		if (pq->atrees[i].pq_child->n_elems == 0)
@@ -201,9 +208,16 @@ void pq_free(struct priority_queue *p) {
 }
 
 int higher(int x, int universo) {
-	return (x & ((~0) >>(int)ceil(log(universo)/log(2)*2)));
+	int mascarado = 7 >> (int)ceil((log(universo)/log(2))/2);
+	
+	printf("calculando higher\n");
+	printf("numero de shifts %x\n",(int)ceil((log(universo)/log(2))/2));
+	printf("0 negado %x\n",~0);
+	printf("mascara %x\n",mascarado);
+	return (x & (~0 >> (int)ceil((log(universo)/log(2))/2)));
 }
 
 int lower(int x, int universo) {
-	return (x & ((~0) >>(int)floor(log(universo)/log(2)*2)));
+	printf("calculando lower\n");
+	return (x & (~0 << (int)floor((log(universo)/log(2))/2)));
 }
