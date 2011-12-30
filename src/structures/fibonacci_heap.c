@@ -6,7 +6,7 @@
 #include "priority_queue.h"
 
 
-struct priority_queue *pq_new(int size) {
+struct priority_queue *pq_new(unsigned int size, unsigned int universe) {
 	struct priority_queue *pq;
 	init_n = size;
 	make_node_list(size);
@@ -18,7 +18,7 @@ int pq_empty(struct priority_queue *p) {
   return ((p->n_nodes == 0)? TRUE : FALSE);
 }
 
-void pq_insert(struct priority_queue *pq, int new_elem) {
+void pq_insert(struct priority_queue *p, unsigned int new_elem) {
 	if(new_elem < MAXKEY){
 		struct node *new_node;
 		if(nodes_array[new_elem] == NULL){
@@ -37,18 +37,18 @@ void pq_insert(struct priority_queue *pq, int new_elem) {
 		new_node->tag = 0;
 		new_node->left = new_node;
 		new_node->right = new_node;		
-		if(pq->n_nodes == 0){
-			pq->root_list = new_node;
-			pq->n_nodes = 1;
+		if(p->n_nodes == 0){
+			p->root_list = new_node;
+			p->n_nodes = 1;
 		}
 		else{
-			new_node->left = pq->root_list;
-			new_node->right = pq->root_list->right;
-			pq->root_list->right = new_node;
+			new_node->left = p->root_list;
+			new_node->right = p->root_list->right;
+			p->root_list->right = new_node;
 			new_node->right->left = new_node;
-			if((pq->root_list->key) > (new_node->key))
-				pq->root_list = new_node;
-			pq->n_nodes+=1;
+			if((p->root_list->key) > (new_node->key))
+				p->root_list = new_node;
+			p->n_nodes+=1;
 		}
 	}
 	#ifdef DEBUG
@@ -57,57 +57,57 @@ void pq_insert(struct priority_queue *pq, int new_elem) {
 	#endif
 }
 
-int pq_extract(struct priority_queue *pq) {
-	if(pq->root_list != NULL){
+unsigned int pq_extract(struct priority_queue *p){
+	if(p->root_list != NULL){
 		int temp;
 		struct node *tempptr,*t1,*t2;
-		temp = pq->root_list->key;
-		if((pq->root_list->child == NULL) && (pq->n_nodes == 1)){
-			put_node(pq->root_list);
-			pq->n_nodes = 0;
-			pq->root_list = NULL;
+		temp = p->root_list->key;
+		if((p->root_list->child == NULL) && (p->n_nodes == 1)){
+			put_node(p->root_list);
+			p->n_nodes = 0;
+			p->root_list = NULL;
 		}
-		else if ((pq->root_list->child == NULL) && (pq->n_nodes > 1)){	
-			pq->root_list->left->right = pq->root_list->right;
-			pq->root_list->right->left = pq->root_list->left;
-			tempptr = pq->root_list;
-			pq->root_list = pq->root_list->left;
+		else if ((p->root_list->child == NULL) && (p->n_nodes > 1)){	
+			p->root_list->left->right = p->root_list->right;
+			p->root_list->right->left = p->root_list->left;
+			tempptr = p->root_list;
+			p->root_list = p->root_list->left;
 			put_node(tempptr);
-			pq->n_nodes -= 1;
-			if(pq->root_list->key != 3)
-				consolidate(pq);
+			p->n_nodes -= 1;
+			if(p->root_list->key != 3)
+				consolidate(p);
 		}
-		else if(pq->root_list->child != NULL){
-			t1 = pq->root_list->child;
+		else if(p->root_list->child != NULL){
+			t1 = p->root_list->child;
 			while(t1 != t1->right ){
 				t2=t1->right;
 				t1->right = t2->right;
 				t2->right->left = t1;
 			
-				t2->right= pq->root_list->right;
-				t2->left = pq->root_list;
+				t2->right= p->root_list->right;
+				t2->left = p->root_list;
 				t2->parent=NULL;
 				t2->tag = 0;
 
-				pq->root_list->right->left = t2;
-				pq->root_list->right = t2;
-				pq->n_nodes += 1;
+				p->root_list->right->left = t2;
+				p->root_list->right = t2;
+				p->n_nodes += 1;
 			}
-				t1->right= pq->root_list->right;
-				t1->left = pq->root_list;
+				t1->right= p->root_list->right;
+				t1->left = p->root_list;
 				t1->parent = 0;
 				t1->tag = 0;
-				pq->root_list->right->left = t1;
-				pq->root_list->right = t1;
-				pq->n_nodes += 1;
-				pq->root_list->degree = 0;
-				t2 = pq->root_list;
-				pq->root_list->left->right = pq->root_list->right;
-				pq->root_list->right->left = pq->root_list->left;
-				pq->root_list = pq->root_list->right;
+				p->root_list->right->left = t1;
+				p->root_list->right = t1;
+				p->n_nodes += 1;
+				p->root_list->degree = 0;
+				t2 = p->root_list;
+				p->root_list->left->right = p->root_list->right;
+				p->root_list->right->left = p->root_list->left;
+				p->root_list = p->root_list->right;
 				put_node(t2);
-				pq->n_nodes -=1;
-				consolidate(pq);
+				p->n_nodes -=1;
+				consolidate(p);
 		}
 		return temp;
 	}
