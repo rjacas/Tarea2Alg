@@ -12,8 +12,8 @@
 #ifdef _BINARY_HEAP
 
 struct priority_queue {
-    int *elems;
-    int n_elems;
+    unsigned int *elems;
+    unsigned int n_elems;
 };
 
 #endif
@@ -24,7 +24,7 @@ struct priority_queue {
 struct node{
     struct node *parent;
     struct node *left, *right;
-    int value;
+    unsigned int value;
 };
 
 struct priority_queue {
@@ -50,14 +50,14 @@ void zagzag(struct node *son, struct node *dad, struct node *grandpa);
 struct node {
     struct node *bro;
     struct node *first_child;
-    int value;
-    int order;
+    unsigned int value;
+    unsigned int order;
 };
 
 struct priority_queue {
     struct node **trees;
-    int total_trees;
-    int n_elems;
+    unsigned int total_trees;
+    unsigned int n_elems;
 };
 
 void merge_tree(struct priority_queue *p, struct node *new_node);
@@ -159,7 +159,7 @@ Params:
 Returns:
     the newly created priority_queue structure.
 */
-struct priority_queue *pq_new(int size,int universe);
+struct priority_queue *pq_new(unsigned int size, unsigned int universe);
 
 /*
    Tests a priority queue for emptiness
@@ -184,7 +184,7 @@ Params:
     new_elem(IN) - the element to insert.
 
 */
-void pq_insert(struct priority_queue *p, int new_elem);
+void pq_insert(struct priority_queue *p, unsigned int new_elem);
 
 /*
    Extracts the smallest element and its origin identifier from a
@@ -200,7 +200,7 @@ Params:
     smallest element in the priority queue should be left.
 */
 
-int pq_extract(struct priority_queue *p);
+unsigned int pq_extract(struct priority_queue *p);
 
 /*
    Deallocates a priority queue created through pq_new(). Unspecified
