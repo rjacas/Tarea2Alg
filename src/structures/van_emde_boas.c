@@ -54,16 +54,13 @@ void pq_insert(struct priority_queue *pq,unsigned int new_elem) {
 #endif
 
     pq->n_elems++;
-    printf("ya sume\n");
     if (pq->n_elems == 1) {
-			printf("tengo un elemento\n");
 			pq->max = new_elem;
 			pq->min = new_elem;
 			return;
 		}
 		
 	else if (pq->n_elems == 2) {
-		printf("tengo dos elementos\n");
 		if (new_elem < pq->min) {
 			pq->min = new_elem;
 			return;
@@ -74,9 +71,7 @@ void pq_insert(struct priority_queue *pq,unsigned int new_elem) {
 		}
 	}
 	else {
-		printf("else\n");
 		if (new_elem < pq->min) {
-			printf("soy menor que el minimo\n");
 			tmp = pq->min;
 			pq->min = new_elem;
 			new_elem = tmp;
@@ -89,24 +84,20 @@ void pq_insert(struct priority_queue *pq,unsigned int new_elem) {
 		}
 	}
 	
-	printf("mi universo es: %d",pq->universo);
 		
 	if(pq->atrees != NULL){	
-		
-		printf("debo bajar\n");
 		
 		h = higher(new_elem,pq->universo);
 		l = lower(new_elem,pq->universo);
 		
-		printf("h: %d\n",h);
-		printf("l: %d\n",l);
+		//~ printf("h: %d\n",h);
+		//~ printf("l: %d\n",l);
 		pq_insert (pq->atrees[h].pq_child,l);
 	
 	
-		if (pq->atrees[h].pq_child->n_elems == 1){
-			printf("debo insertar en top\n");
+		if (pq->atrees[h].pq_child->n_elems == 1)
 			pq->atrees[h].non_empty = 1;
-		}
+		
 	}
 }
 
@@ -133,13 +124,18 @@ void pq_up_min(struct priority_queue *pq) {
     }
 #endif
 	
-	if(pq->n_elems == 1)
-		return;
-
 	pq->n_elems--;
 	
-	if (pq->n_elems == 1) 
+	if(pq->n_elems == 0){
+		pq->min = INT_MIN;
+		pq->max = INT_MAX;
+		return;
+	}
+	
+	if (pq->n_elems == 1) {
 		pq->min = pq->max;
+		return;
+	}
 	
 	
 	else {			
@@ -148,7 +144,7 @@ void pq_up_min(struct priority_queue *pq) {
 				if(pq->atrees[i].non_empty == 1)
 					break;
 				
-			pq->min = pq->atrees[i].pq_child->min;
+			pq->min = i*pq->nhijos + pq->atrees[i].pq_child->min;
 		}
 	}
 	
@@ -179,11 +175,9 @@ void pq_free(struct priority_queue *p) {
 }
 
 int higher(int x, int universo) {	
-	printf("calculando higher para %d\n",x);
 	return (x >> (int)ceil((log(universo)/log(2))/2));
 }
 
 int lower(int x, int universo) {
-	printf("calculando lower para %d\n",x);
 	return (x & (0xffffffff >> (32-(int)ceil(log(universo)/log(2)) + (int)ceil((log(universo)/log(2))/2))));
 }
