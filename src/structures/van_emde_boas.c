@@ -93,10 +93,6 @@ void pq_insert(struct priority_queue *pq,unsigned int new_elem) {
 		h = higher(new_elem,pq->universo);
 		l = lower(new_elem,pq->universo);
 		
-		
-		printf("x: %d\n",new_elem);
-		printf("h: %d\n",h);
-		printf("l: %d\n",l);
 		pq_insert (pq->atrees[h].pq_child,l);
 	
 	

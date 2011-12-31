@@ -27,7 +27,7 @@ int main(){
 	
 	struct priority_queue *pq;
 	int i;
-	pq = pq_new(0,4);
+	pq = pq_new(0,5);
 	int min;
 	int nums[7];
 	
