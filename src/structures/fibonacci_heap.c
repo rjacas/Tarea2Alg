@@ -1,3 +1,7 @@
+#ifndef _FIBONACCI_HEAP
+#define _FIBONACCI_HEAP
+#endif
+
 #ifdef DEBUG
 #include <stdio.h>
 #endif

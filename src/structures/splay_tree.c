@@ -1,9 +1,13 @@
+#ifndef _SPLAY_TREE
+#define _SPLAY_TREE
+#endif
 #include <stdlib.h>
 #include "priority_queue.h"
 #ifdef DEBUG
 #include <stdio.h>
 #endif
-struct priority_queue *pq_new(int size) {
+
+struct priority_queue *pq_new(unsigned int size, unsigned int universe) {
     struct priority_queue *pq;
 
     pq = (struct priority_queue *)malloc(sizeof(struct priority_queue *));
@@ -18,7 +22,7 @@ int pq_empty(struct priority_queue *p) {
     return (p->root == NULL)? TRUE : FALSE;
 }
 
-void pq_insert(struct priority_queue *p, int new_elem) {
+void pq_insert(struct priority_queue *p, unsigned int new_elem) {
     struct node *new_node;
 
     new_node = (struct node *)malloc(sizeof(struct node));
@@ -32,9 +36,9 @@ void pq_insert(struct priority_queue *p, int new_elem) {
     p->root = new_node;
 }
 
-int pq_extract(struct priority_queue *p) {
+unsigned int pq_extract(struct priority_queue *p) {
     struct node *min_node;
-
+    unsigned int ret;
     #ifdef DEBUG
     if (pq_empty(p)) {
         printf("No elements to extract from priority queue.\n");
@@ -47,7 +51,11 @@ int pq_extract(struct priority_queue *p) {
     p->root = min_node;
     p->root = p->root->right;
 
-    return min_node->value; 
+    if (p->root != NULL) p->root->parent = NULL;
+
+    ret = min_node->value;
+    free(min_node);
+    return ret; 
 }
 
 void pq_free(struct priority_queue *p) {
@@ -192,3 +200,4 @@ void node_free(struct node *n) {
     free(n);
 
 }
+

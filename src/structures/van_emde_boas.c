@@ -1,3 +1,6 @@
+#ifndef _VAN_EMDE_BOAS
+#define _VAN_EMDE_BOAS
+#endif
 #include "priority_queue.h"
 #include <math.h>
 #include <stdio.h>

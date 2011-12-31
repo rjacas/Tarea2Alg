@@ -1,21 +1,25 @@
+#ifndef _BINOMIAL_HEAP
+#define _BINOMIAL_HEAP
+#endif
+
 #include <math.h>
 #include <limits.h>
 #include <stdlib.h>
 #include "priority_queue.h"
 
-struct priority_queue *pq_new(int size) {
+struct priority_queue *pq_new(unsigned int size, unsigned int universe) {
     struct priority_queue *pq;
 
     pq = (struct priority_queue *)malloc(sizeof(struct priority_queue));
     
-    pq->total_trees = (int) ceil(log(size + 1)/log(2));
+    pq->total_trees = (unsigned int) ceil(log(size + 1)/log(2));
     pq->trees = (struct node **) malloc(sizeof(struct node *) * pq->total_trees);
     pq->n_elems = 0;
 
     return pq;
 }
 
-void pq_insert(struct priority_queue *p, int new_elem) {
+void pq_insert(struct priority_queue *p, unsigned int new_elem) {
     struct node *new_node;
 
     new_node = (struct node *)malloc(sizeof(struct node));
@@ -29,8 +33,8 @@ void pq_insert(struct priority_queue *p, int new_elem) {
 
 }
 
-int pq_extract(struct priority_queue *p) {
-    int i, min_i, val;
+unsigned int pq_extract(struct priority_queue *p) {
+    unsigned int i, min_i, val;
     struct node *aux;
     val = INT_MAX;
     for (i = 0; (p->n_elems >> i) != 0 ; i++) {
@@ -67,7 +71,7 @@ int pq_empty(struct priority_queue *p) {
 }
 
 void pq_free(struct priority_queue *p) {
-    int i;
+    unsigned int i;
     i = 0;
     while (p->n_elems << i != 0) {
         if ((p->n_elems << i) & 1) {
@@ -82,7 +86,7 @@ void pq_free(struct priority_queue *p) {
 
 void merge_tree(struct priority_queue *p, struct node *new_node) {
     struct node *father, *son, *aux;
-    int order;
+    unsigned int order;
 
     order = new_node->order;
     if (p->n_elems & (1 << order)) {
@@ -103,4 +107,17 @@ void merge_tree(struct priority_queue *p, struct node *new_node) {
         p->n_elems |= (1 << order);
     }
 
-} 
+}
+
+void pq_merge(struct priority_queue *p1, struct priority_queue *p2) {
+    struct node *aux;
+    unsigned int i;
+    for (i = 0; (p2->n_elems >> i) != 0 ; i++) {
+        if ((p2->n_elems >> i) & 1) {
+            merge_tree(p1, p2->trees[p2->total_trees - 1 + i]);
+        }
+    }
+    free(p2);
+}
+
+
