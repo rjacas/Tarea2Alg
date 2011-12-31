@@ -132,14 +132,10 @@ struct priority_queue {
 	int universo;
 	int nhijos;
 	struct array_trees *atrees;
-	struct priority_queue *top;
-	
+		
 };
 
-struct priority_queue *pq_new_bottom(int universe,struct priority_queue *top);
 void pq_up_min(struct priority_queue *pq);
-void pq_delete_in_top(struct priority_queue *pq,int h);
-void pq_insert_in_top(struct priority_queue *pq,int h);
 int higher(int x, int universo);
 int lower(int x, int universo);
 
