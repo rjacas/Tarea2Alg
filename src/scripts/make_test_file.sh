@@ -12,4 +12,4 @@ else
     exit 1
 fi
 
-./make_rand $((SIZE/512)) $UNIVERSE
+./make_rand $((SIZE/512)) $UNIVERSE test_file
