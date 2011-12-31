@@ -93,10 +93,6 @@ void pq_insert(struct priority_queue *pq,unsigned int new_elem) {
 		h = higher(new_elem,pq->universo);
 		l = lower(new_elem,pq->universo);
 		
-		
-		printf("x: %d\n",new_elem);
-		printf("h: %d\n",h);
-		printf("l: %d\n",l);
 		pq_insert (pq->atrees[h].pq_child,l);
 	
 	
@@ -170,9 +166,10 @@ void pq_free(struct priority_queue *p) {
     
     int i;
     
-    if(p->nhijos != 2){
-		for(i = 0; p->nhijos; i++)
+    if(p->nhijos != 0){
+		for(i = 0; i < p->nhijos; i++){
 			pq_free(p->atrees[i].pq_child);
+		}
 		
 		free(p->atrees);
 	}

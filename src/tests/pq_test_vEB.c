@@ -27,7 +27,7 @@ int main(){
 	
 	struct priority_queue *pq;
 	int i;
-	pq = pq_new(0,10);
+	pq = pq_new(0,5);
 	int min;
 	int nums[7];
 	
@@ -54,6 +54,8 @@ int main(){
 		printf("extraje %d\n",min);
 	}
 	//~ printvEB(pq,0);
+	
+	pq_free(pq);
 }
 
 
