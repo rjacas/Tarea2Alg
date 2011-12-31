@@ -170,9 +170,10 @@ void pq_free(struct priority_queue *p) {
     
     int i;
     
-    if(p->nhijos != 2){
-		for(i = 0; p->nhijos; i++)
+    if(p->nhijos != 0){
+		for(i = 0; i < p->nhijos; i++){
 			pq_free(p->atrees[i].pq_child);
+		}
 		
 		free(p->atrees);
 	}
