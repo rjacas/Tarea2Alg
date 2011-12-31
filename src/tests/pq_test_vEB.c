@@ -27,8 +27,8 @@ int main(){
 	
 	struct priority_queue *pq;
 	int i;
-	pq = pq_new(0,4);
-	
+	pq = pq_new(0,10);
+	int min;
 	int nums[7];
 	
 	nums[0] = 14; 
@@ -39,14 +39,20 @@ int main(){
 	nums[5] = 4; 
 	nums[6] = 2; 
 	
-	//~ printvEB(pq,0);
-	//~ 
+	printvEB(pq,0);
+		
 	for(i = 0; i < 7; i++){
-		printf("Inserting %d...\n",nums[i]);
+		//~ printf("Inserting %d...\n",nums[i]);
 		pq_insert(pq,nums[i]);
-		printvEB(pq,0);
+		//~ printvEB(pq,0);
 	}
 	
+	printvEB(pq,0);
+	
+	for(i = 0;i < 7; i++){
+		min = pq_extract(pq);
+		printf("extraje %d\n",min);
+	}
 	//~ printvEB(pq,0);
 }
 
