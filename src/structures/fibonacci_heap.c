@@ -134,7 +134,7 @@ void pq_free(struct priority_queue *p) {
 		free(p);
 }
 
-void pq_merge(struct priority_queue *p1, struct priority_queue *p2){//arreglar
+void pq_merge(struct priority_queue *p1, struct priority_queue *p2){
 	struct priority_queue *p3;
 	struct node *t1;
 	if(p1->root_list == NULL){	
@@ -158,6 +158,7 @@ void pq_merge(struct priority_queue *p1, struct priority_queue *p2){//arreglar
 			p1->root_list = p2->root_list;
 		p3->n_nodes = p1->n_nodes + p2->n_nodes;
 
+		free(p2);
 		p2 = NULL;
 		p1 = NULL;
 	}
@@ -256,7 +257,10 @@ struct l_node *node_list(unsigned int n){
 	int i;
 	struct l_node *h, *temp;
 	struct node *tnode;
-	h = NULL;
+	if(node_created_flag)
+		h = first;
+	else
+		h = NULL;
 	node_created_flag = TRUE;
 	for(i = 1; i <= n;i++)	{
 		temp = (struct l_node *) malloc(sizeof(struct l_node));
@@ -267,7 +271,7 @@ struct l_node *node_list(unsigned int n){
 		tnode->back = NULL;
 		h = temp;
 	}
-	node_count = n;
+	node_count += n;
 	#ifdef DEBUG
 	printf("%d Nodes Created.\n",n);
 	#endif
