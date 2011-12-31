@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
     struct priority_queue *pq;
     int elems[N_ELEMS] = { 4, 3, 72, 4, 77, 2, 83};
 
-    pq = pq_new(N_ELEMS, 100);
+    pq = pq_new(N_ELEMS, 7);
 
     for (i = 0; i < N_ELEMS; i++) {
         printf("Inserting %d...\n", elems[i]);
