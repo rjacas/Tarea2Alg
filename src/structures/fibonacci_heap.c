@@ -12,9 +12,9 @@
 
 struct priority_queue *pq_new(unsigned int size, unsigned int universe) {
 	struct priority_queue *pq;
-	init_n = size;
 	make_node_list(size);
   pq = new_pq();
+	pq->init_n = size;
   return pq;
 }
 
@@ -206,7 +206,7 @@ void consolidate(struct priority_queue *pq){
 	int i,x,d;
 	
 	struct node *t1,*t2,*temp;
-	x = pq->n_nodes * (ceil(log(init_n)/log((1+sqrt(5))/2)));
+	x = pq->n_nodes * (ceil(log(pq->init_n)/log((1+sqrt(5))/2)));
 	struct node *array[x];
 
 	for(i = 0; i < x; i++)

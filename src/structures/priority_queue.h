@@ -70,7 +70,6 @@ void merge_all_trees_rec(struct priority_queue *p, struct node *n);
 #define MAXKEY 16777215
 int node_count;
 int node_created_flag;
-int init_n;
 int n;
 int hn;
 int na;
@@ -91,6 +90,7 @@ struct node{
 struct priority_queue{
 	struct node *root_list;
 	int n_nodes;
+	int init_n;
 };
 
 struct l_node{
