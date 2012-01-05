@@ -17,9 +17,14 @@ unsigned int *gen_instance(char *filename, unsigned int n, unsigned int exp_univ
     elems = (unsigned int *)malloc(n * sizeof(unsigned int));
     
     file = fopen(filename, "rb");
+    
+    if (file == NULL) {
+        printf("Error when opening file.");
+        exit(1);
+    }
 
     idx = 0;
-
+    ret = 0;
     while ((ret = fread(elems + idx, sizeof(unsigned int), n - idx, file)) > 0 && (n - idx) > 0) idx += ret;
    
     fclose(file);
