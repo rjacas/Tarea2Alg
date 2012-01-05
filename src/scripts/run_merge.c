@@ -65,14 +65,14 @@ int main(int argc, char **argv) {
         pq_insert(pq2, elems[i]);
     }
 
-    clock_gettime(CLOCK_REALTIME, &before);
+    clock_gettime(CLOCK_MONOTONIC, &before);
     pq = pq_merge(pq1, pq2);
-    clock_gettime(CLOCK_REALTIME, &after);
+    clock_gettime(CLOCK_MONOTONIC, &after);
 
     if (big) {
         printf("merge: %lldms\n", timespec_diff_ms(after, before));
     } else {
-        printf("merge: %lldns\n", timespec_diff_ns(after, before));
+        printf("merge: %ldns\n", timespec_diff_ns(after, before));
     }
 
     pq_free(pq);

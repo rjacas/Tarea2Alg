@@ -41,6 +41,7 @@ run_merge_fibonacci: fibonacci_heap src/scripts/run_merge.c src/structures/prior
 
 
 # ================== Utils ================== 
+
 make_test_file: src/scripts/make_test_file.sh src/scripts/make_test_file.sh
 	gcc -g src/scripts/make_rand.c -o bin/make_rand
 	cp src/scripts/make_test_file.sh bin/make_test_file.sh

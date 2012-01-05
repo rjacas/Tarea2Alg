@@ -128,7 +128,7 @@ struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue
 
     for (i = 0; (pq2->n_elems >> i) != 0 ; i++) {
         if ((pq2->n_elems >> i) & 1) {
-            merge_tree(pq1, pq2->trees[pq2->total_trees - 1 - i]);
+            merge_tree(pq1, pq2->trees[i]);
         }
     }
     free(pq2);
