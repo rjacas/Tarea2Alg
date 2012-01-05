@@ -211,22 +211,23 @@ void pq_free(struct priority_queue *p);
 
 #if defined(_BINARY_HEAP) || defined(_BINOMIAL_HEAP) || defined(_FIBONACCI_HEAP)
 /*
-	 Merges two priority queues into one, absorbing the second queue
-     into the first. Both priority_queue structs must have been
-     allocated through pq_new(). The resulting priority queue (p1)
+	 Merges two priority queues into one, absorbing one queue
+     into the other. Both priority_queue structs must have been
+     allocated through pq_new(). The resulting priority queue
      will have a maximum number of elements equal to the sum of the
      maximums of each merged queue. Duplicate elements will not be
      deleted.
  
 Params:
-      p1(IN/OUT) - the first priority queue to be merged. After the
-                    merge, it will hold all the merged elements.
-      p2(IN/OUT) - the second priority queue to be merged. After the
-                    merge it will be freed. In other words, this pointer
-                    will be unusable after the merging.
+      p1(IN/OUT) - the first priority queue to be merged.
+      p2(IN/OUT) - the second priority queue to be merged.
+
+Returns:
+      the priority queue that holds all the merged elements. It is the
+      only pq that should be pq_free'd.
 
 */
-void pq_merge(struct priority_queue *p1, struct priority_queue *p2);
+struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2);
 #endif
 
 

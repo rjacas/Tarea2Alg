@@ -9,19 +9,6 @@
 
 struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2);
 
-int int_cmp(const void *a, const void *b) {
-
-    const int *ia = (const int *)a; // casting pointer types 
-    const int *ib = (const int *)b;
-    if (*ia == *ib) {
-        return 0;
-    } else if (*ia < *ib) {
-        return -1;
-    } else {
-        return 1;
-    }
-}
-
 unsigned int *gen_instance(char *filename, unsigned int n, unsigned int exp_universe) {
     unsigned int *elems;
     int idx, ret;
@@ -64,6 +51,7 @@ int main(int argc, char **argv) {
 
     elems = gen_instance(argv[4], n, exp_universe);
 
+
     for (m = 0; m < repeats; m++) {
 
     pq1 = pq_new(n_1, exp_universe);
@@ -77,9 +65,9 @@ int main(int argc, char **argv) {
         pq_insert(pq2, elems[i]);
     }
 
-    clock_gettime(CLOCK_MONOTONIC, &before);
+    clock_gettime(CLOCK_REALTIME, &before);
     pq = pq_merge(pq1, pq2);
-    clock_gettime(CLOCK_MONOTONIC, &after);
+    clock_gettime(CLOCK_REALTIME, &after);
 
     if (big) {
         printf("merge: %lldms\n", timespec_diff_ms(after, before));
