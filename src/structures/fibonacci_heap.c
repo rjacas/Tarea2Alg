@@ -159,8 +159,6 @@ struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue
 		p3->n_nodes = p1->n_nodes + p2->n_nodes;
 
 		free(p2);
-		p2 = NULL;
-		p1 = NULL;
 	}
 	return p3;
 }
