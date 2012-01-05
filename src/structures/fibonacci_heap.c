@@ -124,11 +124,8 @@ unsigned int pq_extract(struct priority_queue *p){
 }
 
 void pq_free(struct priority_queue *p) {
-		struct node *aux;
 		while(1){
-			aux = get_node();
-			free(aux);
-			if(node_count == 0)
+			if(get_node() == 0)
 				break;
 		}
 		free(p);
@@ -159,6 +156,8 @@ struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue
 		p3->n_nodes = p1->n_nodes + p2->n_nodes;
 
 		free(p2);
+		p2 = NULL;
+		p1 = NULL;
 	}
 	return p3;
 }
@@ -283,7 +282,8 @@ void make_node_list(int n){
 struct node *get_node(){
 	struct l_node *temp;
 	struct node *tnode;
-
+	if(first == NULL)
+		return NULL;
 	tnode = first->addr;
 	temp = first;
 	first = first->link;
