@@ -32,7 +32,7 @@ void pq_insert(struct priority_queue *p, unsigned int new_elem) {
 		else{
 			struct l_node *temp;
 			new_node = (struct node *) malloc(sizeof(struct node));		
-			nodes_array[new_elem]->back = new_node;
+			put_node(new_node);
 		}
 		new_node->parent = NULL;
 		new_node->child = NULL;
@@ -124,10 +124,13 @@ unsigned int pq_extract(struct priority_queue *p){
 }
 
 void pq_free(struct priority_queue *p) {
-		while(1){
-			if(get_node() == 0)
-				break;
+		struct node* aux;
+
+		while(node_count > 0){
+			aux = get_node();
+			free(aux);
 		}
+		node_created_flag = FALSE;
 		free(p);
 }
 
@@ -282,8 +285,6 @@ void make_node_list(int n){
 struct node *get_node(){
 	struct l_node *temp;
 	struct node *tnode;
-	if(first == NULL)
-		return NULL;
 	tnode = first->addr;
 	temp = first;
 	first = first->link;
