@@ -134,7 +134,7 @@ void pq_free(struct priority_queue *p) {
 		free(p);
 }
 
-void pq_merge(struct priority_queue *p1, struct priority_queue *p2){
+struct priority_queue* pq_merge(struct priority_queue *p1, struct priority_queue *p2){
 	struct priority_queue *p3;
 	struct node *t1;
 	if(p1->root_list == NULL){	
@@ -162,7 +162,7 @@ void pq_merge(struct priority_queue *p1, struct priority_queue *p2){
 		p2 = NULL;
 		p1 = NULL;
 	}
-	p1 = p3;
+	return p3;
 }
 
 
