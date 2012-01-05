@@ -75,20 +75,32 @@ unsigned int pq_extract(struct priority_queue *pq) {
     return elem;
 }
 
-void pq_merge(struct priority_queue *p1, struct priority_queue *p2) {
+struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2) {
     unsigned int i;
-    p1->elems = realloc(p1->elems, sizeof(unsigned int) * (p1->elems[0] + p2->elems[0] + 1));
+    struct priority_queue *pq1, *pq2;
 
-    p1->elems[0] = p1->elems[0] + p2->elems[0];
-
-    //TODO: test this shit :P
-    for (i = 1; i < p2->n_elems + 1; i++) {
-        p1->elems[i + p1->n_elems] = p2->elems[i];
+    if (p1->n_elems < p2->n_elems) {
+        pq2 = p1;
+        pq1 = p2;
+    } else {
+        pq1 = p1;
+        pq2 = p2;
     }
 
-    p1->n_elems += p2->n_elems;
+    pq1->elems = realloc(pq1->elems, sizeof(unsigned int) * (pq1->elems[0] + pq2->elems[0] + 1));
 
-    heapify(p1->elems + 1, p1->n_elems);
+    pq1->elems[0] = pq1->elems[0] + pq2->elems[0];
+
+    for (i = 1; i < pq2->n_elems + 1; i++) {
+        pq1->elems[i + pq1->n_elems] = pq2->elems[i];
+    }
+
+    pq1->n_elems += pq2->n_elems;
+
+    heapify(pq1->elems + 1, pq1->n_elems);
+    pq_free(pq2);
+
+    return pq1;
 }
 
 void heapify (unsigned int *array, unsigned int len) {

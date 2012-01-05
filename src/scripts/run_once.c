@@ -77,7 +77,6 @@ int main(int argc, char **argv) {
 
     pq = pq_new(k * n, exp_universe);
 
-    //Maximum size is 84 MB. Still addressable, bitches. 
     elems = gen_instance(argv[4], 3 * k * n, exp_universe);
 
     sorted = atoi(argv[6]);
@@ -95,13 +94,12 @@ int main(int argc, char **argv) {
 
     clock_gettime(CLOCK_MONOTONIC, &before);
     for (i = 0; i < n; i++) {
-        printf("Run number %d\n", i);
-        for (j = 0; j < k; j++) { printf("Inserted %d\n", elems[idx]); pq_insert(pq, elems[idx++]); }
-        for (j = 0; j < k; j++) { printf("Extracted %d\n", pq_extract(pq)); }
-        for (j = 0; j < k; j++) { printf("Inserted  %d\n", elems[idx]); pq_insert(pq, elems[idx++]); }
+        for (j = 0; j < k; j++) pq_insert(pq, elems[idx++]);
+        for (j = 0; j < k; j++) pq_extract(pq);
+        for (j = 0; j < k; j++) pq_insert(pq, elems[idx++]);
     }
     clock_gettime(CLOCK_MONOTONIC, &after);
-    printf("Type 1: %dms\n", timespec_diff(after, before));
+    printf("idi: %lldns\t", timespec_diff(after, before));
    
     clock_gettime(CLOCK_MONOTONIC, &before);
     for (i = 0; i < n; i++) {
@@ -111,7 +109,7 @@ int main(int argc, char **argv) {
     }
     clock_gettime(CLOCK_MONOTONIC, &after);
     
-    printf("Type 2: %dms\n", timespec_diff(after, before));
+    printf("did: %lldns\n", timespec_diff(after, before));
 
     }
     free(elems);

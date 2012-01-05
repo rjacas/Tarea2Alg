@@ -109,15 +109,30 @@ void merge_tree(struct priority_queue *p, struct node *new_node) {
 
 }
 
-void pq_merge(struct priority_queue *p1, struct priority_queue *p2) {
+struct priority_queue *pq_merge(struct priority_queue *p1, struct priority_queue *p2) {
     struct node *aux;
-    unsigned int i;
-    for (i = 0; (p2->n_elems >> i) != 0 ; i++) {
-        if ((p2->n_elems >> i) & 1) {
-            merge_tree(p1, p2->trees[p2->total_trees - 1 + i]);
+    struct priority_queue *pq1, *pq2;
+    unsigned int i, total;
+
+    if (p1->n_elems < p2->n_elems) {
+        pq2 = p1;
+        pq1 = p2;
+    } else {
+        pq1 = p1;
+        pq2 = p2;
+    }
+
+    pq1->trees = realloc(pq1->trees, sizeof(struct node *) * (pq1->total_trees + pq2->total_trees));
+
+    pq1->total_trees = pq1->total_trees + pq2->total_trees;
+
+    for (i = 0; (pq2->n_elems >> i) != 0 ; i++) {
+        if ((pq2->n_elems >> i) & 1) {
+            merge_tree(pq1, pq2->trees[pq2->total_trees - 1 - i]);
         }
     }
-    free(p2);
+    free(pq2);
+    return pq1;
 }
 
 
