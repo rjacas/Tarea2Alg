@@ -216,6 +216,127 @@ Descripción del Problema
 Hipótesis
 \end_layout
 
+\begin_layout Subsection
+Secuencias de inserciones y extracciones del elemento mínimo
+\end_layout
+
+\begin_layout Subsubsection
+Universo pequeño
+\end_layout
+
+\begin_layout Enumerate
+Binary Heap:
+\end_layout
+
+\begin_layout Enumerate
+Binomial Heap
+\end_layout
+
+\begin_layout Enumerate
+Fibonacci Heap: Dada la naturaleza del algoritmos, es totalmente independiente
+ de la cantidad inserciones que se realiza, puesto que están toman tiempo
+ orden constante (
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+), y de igual manera es relativamente independiente del rango al cual pertenezca
+n los elementos.
+ Es de esperarse que el costo del algoritmo este centrado la fase 
+\begin_inset Formula $(d^{k}i^{k}d^{k})^{n}$
+\end_inset
+
+, puesto que es para los borrados donde se realiza el trabajo de ordenamiento,
+ es de esperarse que los resultados sean bastante malos dado que el caso
+ ideal es el de muchas inserciones y borrados esporádicos.
+\end_layout
+
+\begin_layout Enumerate
+Van Emde Boas: Como en esta estructura, cuando insertamos un elemento este
+ va siendo 
+\shape italic
+divido 
+\begin_inset Formula $($
+\end_inset
+
+
+\begin_inset Formula $x=a\sqrt{U}+b$
+\end_inset
+
+
+\begin_inset Formula $)$
+\end_inset
+
+ 
+\shape default
+de tal manera que vamos guardando una representación de él en los niveles
+ más bajos.
+ Para la extracción es el proceso inverso.
+ Al ser así, al insertar o extraer elementos, debemos bajar y subir por
+ la estructura, actualizando datos.
+ Esto podría generar cierta demora para las siguientes operaciones.
+ En el caso de inserción de elementos ordenados debería tardar más, ya que
+ se mantiene bajando por un solo sector de la estructura.
+\end_layout
+
+\begin_layout Enumerate
+Splay Tree
+\end_layout
+
+\begin_layout Subsubsection
+Universo grande
+\end_layout
+
+\begin_layout Enumerate
+Binary Heap:
+\end_layout
+
+\begin_layout Enumerate
+Binomial Heap
+\end_layout
+
+\begin_layout Enumerate
+Fibonacci Heap: Como se menciono para el caso anterior, es prácticamente
+ irrelevante el universo de estudio para este algoritmo, dada la naturaleza
+ del mismo.
+ Nuevamente se espera que sea el más costoso de los algoritmos, dado que
+ se incurre en el peor caso, más marcado ahora, donde se realizan muchas
+ extracciones sucesivas.
+\end_layout
+
+\begin_layout Enumerate
+Van Emde Boas: Como el universo es mayor y coincide que el exponente del
+ tamaño del universo es potencia de 2, se generan más niveles.
+ Esto haría que cuando insertemos más y más elementos, habría que bajar
+ más y más por la estructura.
+ Lo mismo para la extracción del mínimo, debemos bajar y subir por la estructura
+ muchas veces para reemplazar al mínimo extraído por el nuevo mínimo.
+ También deberíamos tener un resultado similar en el caso de inserciones
+ ordenadas.
+\end_layout
+
+\begin_layout Enumerate
+Splay Tree
+\end_layout
+
+\begin_layout Subsection
+Union
+\end_layout
+
+\begin_layout Enumerate
+Binary Heap
+\end_layout
+
+\begin_layout Enumerate
+Binomial Heap
+\end_layout
+
+\begin_layout Enumerate
+Fibonacci Heap: Dado que el algoritmo para Merge consiste básicamente en
+ concatenar las listas de elementos de ambas colas de prioridad, el tiempo
+ debería ser igual al tiempo que tome establecer el mínimo común entre ambas
+ colas pues el resto es orden constante.
+\end_layout
+
 \begin_layout Section
 Diseño Experimental
 \end_layout
@@ -709,7 +830,7 @@ begin{center}
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graficos/small/plotsmallks0.png
+	filename graficos/big/plotbigks0.png
 	scale 40
 
 \end_inset
@@ -982,6 +1103,89 @@ status open
 
 \begin_layout Section
 Interpretación y Conclusiones
+\end_layout
+
+\begin_layout Subsection
+Secuencias de inserciones y extracciones del elemento mínimo
+\end_layout
+
+\begin_layout Subsubsection
+Universo pequeño
+\end_layout
+
+\begin_layout Enumerate
+Binary Heap:
+\end_layout
+
+\begin_layout Enumerate
+Binomial Heap
+\end_layout
+
+\begin_layout Enumerate
+Fibonacci Heap: Tal y como se esperaba su comportamiento tiende a ser el
+ más lento dada la naturaleza de las pruebas, ya que se realiza una gran
+ cantidad de operaciones de borrado consecutivas, que son donde se centra
+ todo el costo del algoritmo, las inserciones son prácticamente despreciables
+ en comparación.
+\end_layout
+
+\begin_layout Enumerate
+Van Emde Boas: Su comportamiento con respecto a las inserciones es similar
+ a la hipótesis fundada, agregando que las extracciones de mínimo también
+ generan un tiempo extra de ejecución, especialmente cuando los elementos
+ son insertados de forma ordenada.
+\end_layout
+
+\begin_layout Enumerate
+Splay Tree
+\end_layout
+
+\begin_layout Subsubsection
+Universo grande
+\end_layout
+
+\begin_layout Enumerate
+Binary Heap:
+\end_layout
+
+\begin_layout Enumerate
+Binomial Heap
+\end_layout
+
+\begin_layout Enumerate
+Fibonacci Heap: Nuevamente se comprueba que el algoritmo esta incurriendo
+ en su peor caso, obviando el costo constante de las inserciones, y que
+ se comporta como el peor de todos.
+\end_layout
+
+\begin_layout Enumerate
+Van Emde Boas: En este caso se nota aún más lo dicho en la hipótesis, teniendo
+ un tiempo mucho mayor que las otras estructuras, lo que da para pensar
+ que a mayor universo, menos óptimo es el uso de esta estructura, por tener
+ una mayor cantidad de niveles que recorrer y actualizar en cada operación
+ de inserción y extracción.
+\end_layout
+
+\begin_layout Enumerate
+Splay Tree
+\end_layout
+
+\begin_layout Subsection
+Union
+\end_layout
+
+\begin_layout Enumerate
+Binary Heap
+\end_layout
+
+\begin_layout Enumerate
+Binomial Heap
+\end_layout
+
+\begin_layout Enumerate
+Fibonacci Heap: El resultado muestra que, a diferencia que para el experimento
+ de sucesivas inserciones y borrados, el comportamiento para Merge es el
+ más optimo entre los algoritmos analizados.
 \end_layout
 
 \begin_layout Section
