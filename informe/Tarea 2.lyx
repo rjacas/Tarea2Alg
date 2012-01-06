@@ -356,6 +356,10 @@ Sistema Operativo: Debian testing (wheezy)
 Resultados
 \end_layout
 
+\begin_layout Subsection
+Secuencias de inserciones y extracciones del elemento mínimo
+\end_layout
+
 \begin_layout Standard
 Para una mayor claridad de los resultados, se dividieron los gráficos de
  tal manera que se pueda visualizar mejor qué sucede entre los algoritmos
@@ -365,7 +369,7 @@ Para una mayor claridad de los resultados, se dividieron los gráficos de
  experimentos hechos para cada instancia(ver tablas en Anexo).
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Universo 
 \begin_inset Formula $[0..2^{16}-1]$
 \end_inset
@@ -569,7 +573,7 @@ Tiempo v/s k, para elementos elegidos de forma semiordenada
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Universo 
 \begin_inset Formula $[0..2^{24}-1]$
 \end_inset
@@ -773,12 +777,120 @@ k v/s tiempo, para elementos elegidos de forma semiordenada
 
 \end_layout
 
+\begin_layout Subsection
+Union
+\end_layout
+
+\begin_layout Subsubsection
+Universo 
+\begin_inset Formula $[0..2^{16}-1]$
+\end_inset
+
+ con número de elementos 
+\begin_inset Formula $n=2^{13}$
+\end_inset
+
+ : 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graficos/small/plotmerge.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+1-alpha v/s tiempo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Universo 
+\begin_inset Formula $[0..2^{24}-1]$
+\end_inset
+
+ con número de elementos 
+\begin_inset Formula $n=2^{21}$
+\end_inset
+
+ : 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graficos/big/plotmergeb.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+1-alpha v/s tiempo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Interpretación y Conclusiones
 \end_layout
 
 \begin_layout Section
 Anexos
+\end_layout
+
+\begin_layout Subsection
+Secuencias de inserciones y extracciones del elemento mínimo:
 \end_layout
 
 \begin_layout Standard
@@ -803,6 +915,22 @@ sorted: forma en que se eligieron los números a insertar
 \end_layout
 
 \end_deeper
+\begin_layout Subsubsection
+Universo 
+\begin_inset Formula $[0..2^{16}-1]$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Subsubsection*
+Secuencias 
+\begin_inset Formula $(idi)$
+\end_inset
+
+ : 
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float table
 placement H
@@ -860,7 +988,7 @@ sorted
 \begin_inset Text
 
 \begin_layout Plain Layout
-Binomial Heap
+Binary Heap [ns]
 \end_layout
 
 \end_inset
@@ -869,7 +997,7 @@ Binomial Heap
 \begin_inset Text
 
 \begin_layout Plain Layout
-Binomial Heap
+Binomial Heap [ns]
 \end_layout
 
 \end_inset
@@ -878,7 +1006,7 @@ Binomial Heap
 \begin_inset Text
 
 \begin_layout Plain Layout
-Fibonacci Heap
+Fibonacci Heap [ns]
 \end_layout
 
 \end_inset
@@ -887,7 +1015,7 @@ Fibonacci Heap
 \begin_inset Text
 
 \begin_layout Plain Layout
-Van Emde Boas
+Van Emde Boas [ns]
 \end_layout
 
 \end_inset
@@ -896,7 +1024,7 @@ Van Emde Boas
 \begin_inset Text
 
 \begin_layout Plain Layout
-Splay Tree
+Splay Tree [ns]
 \end_layout
 
 \end_inset
@@ -925,7 +1053,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+534137
 \end_layout
 
 \end_inset
@@ -934,7 +1062,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+705115
 \end_layout
 
 \end_inset
@@ -943,7 +1071,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2544437
 \end_layout
 
 \end_inset
@@ -952,7 +1080,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2201138
 \end_layout
 
 \end_inset
@@ -961,7 +1089,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1603778
 \end_layout
 
 \end_inset
@@ -990,7 +1118,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+344687
 \end_layout
 
 \end_inset
@@ -999,7 +1127,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+632375
 \end_layout
 
 \end_inset
@@ -1008,7 +1136,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+4200604
 \end_layout
 
 \end_inset
@@ -1017,7 +1145,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2586608
 \end_layout
 
 \end_inset
@@ -1026,7 +1154,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+650858
 \end_layout
 
 \end_inset
@@ -1055,7 +1183,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+461926
 \end_layout
 
 \end_inset
@@ -1064,7 +1192,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1087699
 \end_layout
 
 \end_inset
@@ -1073,7 +1201,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3733970
 \end_layout
 
 \end_inset
@@ -1082,7 +1210,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2624135
 \end_layout
 
 \end_inset
@@ -1091,7 +1219,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1669042
 \end_layout
 
 \end_inset
@@ -1120,7 +1248,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3823704
 \end_layout
 
 \end_inset
@@ -1129,7 +1257,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+4689676
 \end_layout
 
 \end_inset
@@ -1138,7 +1266,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+19129163
 \end_layout
 
 \end_inset
@@ -1147,7 +1275,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+15888207
 \end_layout
 
 \end_inset
@@ -1156,7 +1284,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+12307711
 \end_layout
 
 \end_inset
@@ -1185,7 +1313,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2869630
 \end_layout
 
 \end_inset
@@ -1194,7 +1322,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+5546458
 \end_layout
 
 \end_inset
@@ -1203,7 +1331,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+29553139
 \end_layout
 
 \end_inset
@@ -1212,7 +1340,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+23978921
 \end_layout
 
 \end_inset
@@ -1221,7 +1349,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+4892167
 \end_layout
 
 \end_inset
@@ -1250,7 +1378,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2391731
 \end_layout
 
 \end_inset
@@ -1259,7 +1387,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+5183496
 \end_layout
 
 \end_inset
@@ -1268,7 +1396,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+19695197
 \end_layout
 
 \end_inset
@@ -1277,7 +1405,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+16116818
 \end_layout
 
 \end_inset
@@ -1286,7 +1414,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+9115386
 \end_layout
 
 \end_inset
@@ -1315,7 +1443,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+8188858
 \end_layout
 
 \end_inset
@@ -1324,7 +1452,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+10896680
 \end_layout
 
 \end_inset
@@ -1333,7 +1461,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+46797301
 \end_layout
 
 \end_inset
@@ -1342,7 +1470,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+28032454
 \end_layout
 
 \end_inset
@@ -1351,7 +1479,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+27417909
 \end_layout
 
 \end_inset
@@ -1380,7 +1508,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+6837762
 \end_layout
 
 \end_inset
@@ -1389,7 +1517,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+14168775
 \end_layout
 
 \end_inset
@@ -1398,7 +1526,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+65054741
 \end_layout
 
 \end_inset
@@ -1407,7 +1535,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+57943409
 \end_layout
 
 \end_inset
@@ -1416,7 +1544,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+10865739
 \end_layout
 
 \end_inset
@@ -1445,7 +1573,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+8477370
 \end_layout
 
 \end_inset
@@ -1454,7 +1582,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+18824758
 \end_layout
 
 \end_inset
@@ -1463,7 +1591,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+70231535
 \end_layout
 
 \end_inset
@@ -1472,7 +1600,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+54495125
 \end_layout
 
 \end_inset
@@ -1481,7 +1609,737 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
+29408998
+\end_layout
 
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tiempo promedio por algoritmo, para cada k y sorted en el universo más pequeño
+ - Secuencia (idi)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Secuencias 
+\begin_inset Formula $(did)$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+k
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sorted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binary Heap [ns]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binomial Heap [ns]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fibonacci Heap [ns]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Van Emde Boas [ns]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Splay Tree [ns]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+758363
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1635025
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5778221
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3484203
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+654891
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+608148
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+890550
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5319150
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3220119
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+679993
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+705971
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1919356
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6120027
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3520770
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+946464
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5623077
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11627372
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+44624517
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21295258
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5041606
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5153590
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7356498
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47820131
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27143280
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4835687
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3825375
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9388941
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+37147758
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19429598
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5128133
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12569992
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28519178
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+107963423
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+34428237
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11339846
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12597122
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18301847
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+102217160
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+61588774
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9841730
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14102667
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+34822416
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+136025752
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+60503966
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15817036
 \end_layout
 
 \end_inset
@@ -1515,6 +2373,7 @@ end{center}
 
 \begin_layout Plain Layout
 Tiempo promedio por algoritmo, para cada k y sorted en el universo más pequeño
+ - Secuencia (did)
 \end_layout
 
 \end_inset
@@ -1522,13 +2381,28 @@ Tiempo promedio por algoritmo, para cada k y sorted en el universo más pequeño
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+Universo 
+\begin_inset Formula $[0..2^{24}-1]$
+\end_inset
+
+ : 
+\end_layout
+
+\begin_layout Subsubsection*
+Secuencias 
+\begin_inset Formula $(idi)$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement H
 wide false
@@ -1585,7 +2459,7 @@ sorted
 \begin_inset Text
 
 \begin_layout Plain Layout
-Binomial Heap
+Binary Heap [ms]
 \end_layout
 
 \end_inset
@@ -1594,7 +2468,7 @@ Binomial Heap
 \begin_inset Text
 
 \begin_layout Plain Layout
-Binomial Heap
+Binomial Heap [ms]
 \end_layout
 
 \end_inset
@@ -1603,7 +2477,7 @@ Binomial Heap
 \begin_inset Text
 
 \begin_layout Plain Layout
-Fibonacci Heap
+Fibonacci Heap [ms]
 \end_layout
 
 \end_inset
@@ -1612,7 +2486,7 @@ Fibonacci Heap
 \begin_inset Text
 
 \begin_layout Plain Layout
-Van Emde Boas
+Van Emde Boas [ms]
 \end_layout
 
 \end_inset
@@ -1621,7 +2495,7 @@ Van Emde Boas
 \begin_inset Text
 
 \begin_layout Plain Layout
-Splay Tree
+Splay Tree [ms]
 \end_layout
 
 \end_inset
@@ -1650,7 +2524,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+246
 \end_layout
 
 \end_inset
@@ -1659,7 +2533,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+413
 \end_layout
 
 \end_inset
@@ -1668,7 +2542,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1804
 \end_layout
 
 \end_inset
@@ -1677,7 +2551,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3893
 \end_layout
 
 \end_inset
@@ -1686,7 +2560,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1122
 \end_layout
 
 \end_inset
@@ -1715,7 +2589,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+181
 \end_layout
 
 \end_inset
@@ -1724,7 +2598,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+388
 \end_layout
 
 \end_inset
@@ -1733,7 +2607,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3250
 \end_layout
 
 \end_inset
@@ -1742,7 +2616,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2381
 \end_layout
 
 \end_inset
@@ -1751,7 +2625,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+224
 \end_layout
 
 \end_inset
@@ -1780,7 +2654,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+212
 \end_layout
 
 \end_inset
@@ -1789,7 +2663,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+620
 \end_layout
 
 \end_inset
@@ -1798,7 +2672,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3024
 \end_layout
 
 \end_inset
@@ -1807,7 +2681,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2659
 \end_layout
 
 \end_inset
@@ -1816,7 +2690,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+993
 \end_layout
 
 \end_inset
@@ -1845,7 +2719,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1072
 \end_layout
 
 \end_inset
@@ -1854,7 +2728,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+827
 \end_layout
 
 \end_inset
@@ -1863,7 +2737,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+5947
 \end_layout
 
 \end_inset
@@ -1872,7 +2746,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+10750
 \end_layout
 
 \end_inset
@@ -1881,7 +2755,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+4639
 \end_layout
 
 \end_inset
@@ -1910,7 +2784,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+694
 \end_layout
 
 \end_inset
@@ -1919,7 +2793,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+964
 \end_layout
 
 \end_inset
@@ -1928,7 +2802,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+7546
 \end_layout
 
 \end_inset
@@ -1937,7 +2811,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+7570
 \end_layout
 
 \end_inset
@@ -1946,7 +2820,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+927
 \end_layout
 
 \end_inset
@@ -1975,7 +2849,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+849
 \end_layout
 
 \end_inset
@@ -1984,7 +2858,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2130
 \end_layout
 
 \end_inset
@@ -1993,7 +2867,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+8484
 \end_layout
 
 \end_inset
@@ -2002,7 +2876,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+8352
 \end_layout
 
 \end_inset
@@ -2011,7 +2885,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3111
 \end_layout
 
 \end_inset
@@ -2040,7 +2914,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1698
 \end_layout
 
 \end_inset
@@ -2049,7 +2923,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1771
 \end_layout
 
 \end_inset
@@ -2058,7 +2932,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+15819
 \end_layout
 
 \end_inset
@@ -2067,7 +2941,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+22451
 \end_layout
 
 \end_inset
@@ -2076,7 +2950,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+10621
 \end_layout
 
 \end_inset
@@ -2105,7 +2979,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1471
 \end_layout
 
 \end_inset
@@ -2114,7 +2988,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2389
 \end_layout
 
 \end_inset
@@ -2123,7 +2997,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+16886
 \end_layout
 
 \end_inset
@@ -2132,7 +3006,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+17835
 \end_layout
 
 \end_inset
@@ -2141,7 +3015,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1688
 \end_layout
 
 \end_inset
@@ -2170,7 +3044,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+2158
 \end_layout
 
 \end_inset
@@ -2179,7 +3053,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+4929
 \end_layout
 
 \end_inset
@@ -2188,7 +3062,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+20386
 \end_layout
 
 \end_inset
@@ -2197,7 +3071,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+19302
 \end_layout
 
 \end_inset
@@ -2206,7 +3080,7 @@ Splay Tree
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+7578
 \end_layout
 
 \end_inset
@@ -2240,6 +3114,1360 @@ end{center}
 
 \begin_layout Plain Layout
 Tiempo promedio por algoritmo, para cada k y sorted en el universo más grande
+ - Secuencia (idi)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Secuencias 
+\begin_inset Formula $(did)$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+k
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sorted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binary Heap [ms]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binomial Heap [ms]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fibonacci Heap [ms]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Van Emde Boas [ms]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Splay Tree [ms]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+429
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1743
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5581
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14974
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14974
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+484
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+489
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3814
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11366
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+262
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+371
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1542
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5125
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10844
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+471
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1892
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4891
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19654
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+36613
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+36613
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1432
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1420
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12518
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+33720
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+828
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1634
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3985
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17868
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32566
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1323
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5927
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12628
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+49248
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+76107
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+76107
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3033
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4322
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28848
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+74195
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1428
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3793
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10119
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+44737
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+74999
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3219
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tiempo promedio por algoritmo, para cada k y sorted en el universo más grande
+ - Secuencia (did)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Union
+\end_layout
+
+\begin_layout Subsubsection
+Universo 
+\begin_inset Formula $[0..2^{16}-1]$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+alpha
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binary Heap [ns]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binomial Heap [ns]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fibonacci Heap [ns]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+77950
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+811
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+317
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+102511
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+992
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+306
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96892
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+840
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+264
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+109270
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1410
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+232
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+110945
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+774
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+250
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tiempo promedio por algoritmo, para cada k y sorted en el universo más grande
+ - Secuencia (did)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Universo 
+\begin_inset Formula $[0..2^{24}-1]$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+alpha
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binary Heap [ms]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binomial Heap [ms]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fibonacci Heap [ms]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+44645094
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9308
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1613
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50506432
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9023
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1659
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+45531337
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8127
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1568
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+71264404
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9207
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1788
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+76060290
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5087
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1730
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tiempo promedio por algoritmo, para cada k y sorted en el universo más grande
+ - Secuencia (did)
 \end_layout
 
 \end_inset
