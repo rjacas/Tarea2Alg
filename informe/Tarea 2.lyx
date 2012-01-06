@@ -772,7 +772,7 @@ begin{center}
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graficos/big/plotbigks0.png
+	filename graficos/big/plotbigks1.png
 	scale 40
 
 \end_inset
@@ -835,7 +835,7 @@ begin{center}
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename graficos/big/plotbigks1.png
+	filename graficos/big/plotbigks2.png
 	scale 40
 
 \end_inset
@@ -997,7 +997,7 @@ Notación:
 \end_layout
 
 \begin_layout Itemize
-sorted: forma en que se eligieron los números a insertar
+s: forma en que se eligieron los números a insertar
 \end_layout
 
 \begin_deeper
@@ -1078,7 +1078,7 @@ k
 \begin_inset Text
 
 \begin_layout Plain Layout
-sorted
+s
 \end_layout
 
 \end_inset
@@ -1808,7 +1808,7 @@ k
 \begin_inset Text
 
 \begin_layout Plain Layout
-sorted
+s
 \end_layout
 
 \end_inset
@@ -2549,7 +2549,7 @@ k
 \begin_inset Text
 
 \begin_layout Plain Layout
-sorted
+s
 \end_layout
 
 \end_inset
@@ -3282,7 +3282,7 @@ k
 \begin_inset Text
 
 \begin_layout Plain Layout
-sorted
+s
 \end_layout
 
 \end_inset
@@ -3963,9 +3963,88 @@ Tiempo promedio por algoritmo, para cada k y sorted en el universo más grande
 Union
 \end_layout
 
+\begin_layout Standard
+Notación:
+\end_layout
+
+\begin_layout Itemize
+alpha: Corresponde a la distribución de los elementos en cada árbol que
+ participa en el 
+\begin_inset Formula $union$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+10/90 : el 
+\begin_inset Formula $10\%$
+\end_inset
+
+ de los elementos en el primer árbol y el 
+\begin_inset Formula $90\%$
+\end_inset
+
+ restante en el otro
+\end_layout
+
+\begin_layout Itemize
+20/80 : el 
+\begin_inset Formula $20\%$
+\end_inset
+
+ de los elementos en el primer árbol y el 
+\begin_inset Formula $80\%$
+\end_inset
+
+ restante en el otro
+\end_layout
+
+\begin_layout Itemize
+30/70 : el 
+\begin_inset Formula $30\%$
+\end_inset
+
+ de los elementos en el primer árbol y el 
+\begin_inset Formula $70\%$
+\end_inset
+
+ restante en el otro
+\end_layout
+
+\begin_layout Itemize
+40/60 : el 
+\begin_inset Formula $40\%$
+\end_inset
+
+ de los elementos en el primer árbol y el 
+\begin_inset Formula $60\%$
+\end_inset
+
+ restante en el otro
+\end_layout
+
+\begin_layout Itemize
+50/50 : el 
+\begin_inset Formula $50\%$
+\end_inset
+
+ de los elementos en el primer árbol y el 
+\begin_inset Formula $50\%$
+\end_inset
+
+ restante en el otro
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection
 Universo 
 \begin_inset Formula $[0..2^{16}-1]$
+\end_inset
+
+ con número de elementos 
+\begin_inset Formula $n=2^{13}$
 \end_inset
 
  :
@@ -4045,7 +4124,7 @@ Fibonacci Heap [ns]
 \begin_inset Text
 
 \begin_layout Plain Layout
-0
+10/90
 \end_layout
 
 \end_inset
@@ -4083,7 +4162,7 @@ Fibonacci Heap [ns]
 \begin_inset Text
 
 \begin_layout Plain Layout
-1
+20/80
 \end_layout
 
 \end_inset
@@ -4121,7 +4200,7 @@ Fibonacci Heap [ns]
 \begin_inset Text
 
 \begin_layout Plain Layout
-2
+30/70
 \end_layout
 
 \end_inset
@@ -4159,7 +4238,7 @@ Fibonacci Heap [ns]
 \begin_inset Text
 
 \begin_layout Plain Layout
-0
+40/60
 \end_layout
 
 \end_inset
@@ -4197,7 +4276,7 @@ Fibonacci Heap [ns]
 \begin_inset Text
 
 \begin_layout Plain Layout
-1
+50/50
 \end_layout
 
 \end_inset
@@ -4257,8 +4336,7 @@ end{center}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Tiempo promedio por algoritmo, para cada k y sorted en el universo más grande
- - Secuencia (did)
+Tiempo promedio por algoritmo, para cada alpha en el universo más pequeño
 \end_layout
 
 \end_inset
@@ -4276,7 +4354,11 @@ Universo
 \begin_inset Formula $[0..2^{24}-1]$
 \end_inset
 
- :
+ con número de elemento 
+\begin_inset Formula $n=2^{21}$
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
@@ -4353,7 +4435,7 @@ Fibonacci Heap [ms]
 \begin_inset Text
 
 \begin_layout Plain Layout
-0
+10/90
 \end_layout
 
 \end_inset
@@ -4391,7 +4473,7 @@ Fibonacci Heap [ms]
 \begin_inset Text
 
 \begin_layout Plain Layout
-1
+20/80
 \end_layout
 
 \end_inset
@@ -4429,7 +4511,7 @@ Fibonacci Heap [ms]
 \begin_inset Text
 
 \begin_layout Plain Layout
-2
+30/70
 \end_layout
 
 \end_inset
@@ -4467,7 +4549,7 @@ Fibonacci Heap [ms]
 \begin_inset Text
 
 \begin_layout Plain Layout
-0
+40/60
 \end_layout
 
 \end_inset
@@ -4505,7 +4587,7 @@ Fibonacci Heap [ms]
 \begin_inset Text
 
 \begin_layout Plain Layout
-1
+50/50
 \end_layout
 
 \end_inset
@@ -4565,8 +4647,7 @@ end{center}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Tiempo promedio por algoritmo, para cada k y sorted en el universo más grande
- - Secuencia (did)
+Tiempo promedio por algoritmo, para cada alpha en el universo más grande
 \end_layout
 
 \end_inset
