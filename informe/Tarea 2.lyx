@@ -220,54 +220,49 @@ Hipótesis
 Diseño Experimental
 \end_layout
 
-\begin_layout Standard
-Para la experimentación con las distintas colas de prioridad, se utilizaron
- dos universos de elementos 
-\begin_inset Formula $[0..2^{16}-1]$
-\end_inset
-
- y 
-\begin_inset Formula $[0..2^{24}-1]$
-\end_inset
-
-, con una cantidad de elementos a trabajar de 
-\begin_inset Formula $n=2^{11}$
-\end_inset
-
- y 
-\begin_inset Formula $n=2^{19}$
-\end_inset
-
-, respectivamente.
+\begin_layout Subsection
+Inserciones y Extracciones
 \end_layout
 
 \begin_layout Standard
-En cada experimento, ejecutamos secuencias del tipo 
-\begin_inset Formula $(idi)$
+Para la experimentación con las distintas colas de prioridad, se utilizaron
+ dos universos: el primero con elementos en el rango 
+\begin_inset Formula $[0..2^{16}-1]$
 \end_inset
 
- y 
-\begin_inset Formula $(did)$
+ y el segundo con elementos en el rango 
+\begin_inset Formula $[0..2^{24}-1]$
 \end_inset
 
- con 
-\begin_inset Formula $i$
-\end_inset
-
- una inserción y 
-\begin_inset Formula $d$
-\end_inset
-
- una extracción, que en nuestro caso es la extracción del mínimo.
- Las secuencias realizadas fueron de la forma 
+.
+ En cada experimento, se realizaron y estudiaron secuencias de operaciones
+ de la forma 
 \begin_inset Formula $(i^{k}d^{k}i^{k})^{n}$
 \end_inset
 
- y 
+
 \begin_inset Formula $(d^{k}i^{k}d^{k})^{n}$
 \end_inset
 
-, con 
+, donde 
+\begin_inset Formula $d$
+\end_inset
+
+ corresponde a la extracción del mínimo e 
+\begin_inset Formula $i$
+\end_inset
+
+ corresponde a una inserción.
+ Para el universo más pequeño, se utilizó 
+\begin_inset Formula $n=2^{11}$
+\end_inset
+
+ ; para el más grande se utilizó 
+\begin_inset Formula $n=2^{19}$
+\end_inset
+
+.
+ Se usó 
 \begin_inset Formula $k\,\epsilon\,\{1,3,7\}$
 \end_inset
 
@@ -277,58 +272,162 @@ En cada experimento, ejecutamos secuencias del tipo
 \end_layout
 
 \begin_layout Standard
-Entonces la experimentación se dividió de la siguiente manera:
+La experimentación se dividió de la siguiente manera:
 \end_layout
 
 \begin_layout Itemize
-Se hicieron los experimentos respectivos para ambos univeros.
-\end_layout
+Para cada universo (y su correspondiente 
+\begin_inset Formula $n$
+\end_inset
 
-\begin_layout Itemize
-Se hizo un experimento por cada 
+), cada valor de 
 \begin_inset Formula $k$
 \end_inset
 
-, y por cada uno de estos, se hicieron experimentos para el tipo de ordenamiento
- con el que eran insertados los datos.
+ y cada tipo de ordenamiento, se generó una cantidad de elementos suficiente
+ como para realizar las operaciones a estudiar.
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-Finalmente, por cada uno de estos experimentos, se hizo uno para cada cola
- de prioridad.
-\end_layout
-
-\begin_layout Itemize
-Para cada caso se tienen resultados tanto para las secuencias de tipo 
-\begin_inset Formula $(idi)$
+Para cada estructura estudiada, se realizó la secuencia de operaciones para
+ el 
+\begin_inset Formula $k$
 \end_inset
 
-, como para 
-\emph on
+ y 
+\begin_inset Formula $n$
+\end_inset
 
-\begin_inset Formula $(did)$
+ dado.
+ Esto se repitió 3 veces para cada instancia fija.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Esto se repitió 10 veces para el universo pequeño y 3 para el universo grande,
+ para cada tamaño de instancia.
+\end_layout
+
+\begin_layout Itemize
+Para cada caso, se midió el tiempo que tomaba una subsecuencia de tipo 
+\begin_inset Formula $(i^{k}d^{k}i^{k})^{n}$
+\end_inset
+
+ y una 
+\begin_inset Formula $(d^{k}i^{k}d^{k})^{n}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-Al momento de ejecutar cada uno de los experimentos, en el caso de los relaciona
-dos con el universo más pequeño, por la baja tardanza que tenían en su ejecución
-, se decidió repetirlos 30 veces por cada algoritmo, y su tiempo fue expresado
- en 
-\begin_inset Formula $ns$
+Para el universo pequeño, las mediciones se realizaron en la escala de los
+ nanosegundos; para el universo más grande, se realizaron medidas en la
+ escala de los milisegundos.
+ Se promediaron los resultados para cada estructura, 
+\begin_inset Formula $k$
+\end_inset
+
+ y tamaño de universo (y correspondiente 
+\begin_inset Formula $n$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection
+Uniones de estructuras
+\end_layout
+
+\begin_layout Standard
+Para estudiar el tiempo tomado por las operaciones de unión (
+\emph on
+merge
+\emph default
+), se realizaron mediciones para dos tamaños de universo: el primero con
+ elementos en el rango 
+\begin_inset Formula $[0..2^{16}-1]$
+\end_inset
+
+ y el segundo con elementos en el rango 
+\begin_inset Formula $[0..2^{24}-1]$
 \end_inset
 
 .
- Para el universo más grande, se hicieron menos repeticiones, entre 8 y
- 12 por algortimo, y su tiempo es expresado en 
-\begin_inset Formula $ms$
+ Para el primer universo, se utilizó un total de 
+\begin_inset Formula $n=2^{16}$
 \end_inset
 
-.
- Al tener una mayor cantidad de repeticiones, nos aseguramos una mejor precisión
- en las mediciones.
+ elementos; para el segundo se utilizaron 
+\begin_inset Formula $n=2^{21}$
+\end_inset
+
+ elementos.
+ La experimentación se realizó de la siguiente forma:
+\end_layout
+
+\begin_layout Itemize
+Para cada tamaño de universo y su correspondiente número de elementos 
+\emph on
+n
+\emph default
+, se escogen 
+\emph on
+n 
+\emph default
+elementos aleatoriamente.
+\end_layout
+
+\begin_layout Itemize
+Por cada estructura a estudiar:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se crean dos colas de prioridad.
+\end_layout
+
+\begin_layout Itemize
+Se inserta 
+\begin_inset Formula $X\%$
+\end_inset
+
+ de estos elementos en una cola de prioridad, y 
+\begin_inset Formula $(100-X)\%$
+\end_inset
+
+ en la otra.
+ 
+\end_layout
+
+\begin_layout Itemize
+Se realiza el merge de ambas estructuras, midiéndose el tiempo que toma
+ la operación.
+\end_layout
+
+\begin_layout Itemize
+Se borran todas colas de prioridad creadas.
+\end_layout
+
+\begin_layout Itemize
+Para cada elección de los n elementos, se repite 10 veces el proceso de
+ creación, inserción, merge y
+\emph on
+ 
+\emph default
+borrado.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Esto se repite 10 veces.
+\end_layout
+
+\begin_layout Standard
+Es decir, para cada tamaño de universo se crearon 10 instancias, con cada
+ una de las cuales se experimentó 10 veces por cada estructura estudiada,
+ con el objetivo de disminuir la incertidumbre asociada a las mediciones.
 \end_layout
 
 \begin_layout Section
@@ -366,7 +465,7 @@ Para una mayor claridad de los resultados, se dividieron los gráficos de
  con resultados más similares, para cada una de las secuencias, según el
  caso dado.
  El tiempo en todos los gráficos es el resultado del promedio de todo los
- experimentos hechos para cada instancia(ver tablas en Anexo).
+ experimentos hechos para cada instancia (ver tablas en Anexo).
 \end_layout
 
 \begin_layout Subsubsection

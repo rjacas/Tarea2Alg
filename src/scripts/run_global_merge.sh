@@ -5,7 +5,7 @@ if [ -e ./test_file ]; then
 fi
 
 exp_universe=16
-exp_n=11
+exp_n=13
 file=results/merge_small
 
 echo "Small universe..."
@@ -19,15 +19,15 @@ do
     ./make_test_file.sh $((2 ** $exp_n)) $exp_universe
 
     echo "Binary Heap:" >> $file
-    ./run_merge_binary $exp_universe $exp_n $percent test_file 3 0 >> $file
+    ./run_merge_binary $exp_universe $exp_n $percent test_file 10 0 >> $file
     echo >> $file
     
     echo "Binomial Heap:" >> $file
-    ./run_merge_binomial $exp_universe $exp_n $percent test_file 3 0 >> $file
+    ./run_merge_binomial $exp_universe $exp_n $percent test_file 10 0 >> $file
     echo >> $file
 
     echo "Fibonacci Heap:" >> $file
-    ./run_merge_fibonacci $exp_universe $exp_n $percent test_file 3 0 >> $file
+    ./run_merge_fibonacci $exp_universe $exp_n $percent test_file 10 0 >> $file
     echo >> $file
 
     rm ./test_file
@@ -35,7 +35,7 @@ done
 done
 
 exp_universe=24
-exp_n=19
+exp_n=21
 file=results/merge_big
 
 echo "Big universe"
@@ -48,15 +48,15 @@ do
     ./make_test_file.sh $((2 ** $exp_n)) $exp_universe
 
     echo "Binary Heap:" >> $file
-    ./run_merge_binary $exp_universe $exp_n $percent test_file 3 1 >> $file
+    ./run_merge_binary $exp_universe $exp_n $percent test_file 10 0 >> $file
     echo >> $file
     
     echo "Binomial Heap:" >> $file
-    ./run_merge_binomial $exp_universe $exp_n $percent test_file 3 1 >> $file
+    ./run_merge_binomial $exp_universe $exp_n $percent test_file 10 0 >> $file
     echo >> $file
 
     echo "Fibonacci Heap:" >> $file
-    ./run_merge_fibonacci $exp_universe $exp_n $percent test_file 3 1 >> $file
+    ./run_merge_fibonacci $exp_universe $exp_n $percent test_file 10 0 >> $file
     echo >> $file
 
     rm ./test_file

@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
     if (big) {
         printf("merge: %lldms\n", timespec_diff_ms(after, before));
     } else {
-        printf("merge: %ldns\n", timespec_diff_ns(after, before));
+        printf("merge: %lldns\n", timespec_diff_ns(after, before));
     }
 
     pq_free(pq);
