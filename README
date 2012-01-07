@@ -1,12 +1,19 @@
-The main idea is to include priority_queue.h in the tests and compile against the different structures as desired.
-Different ifdefs are used to declare different structs, definitions and auxiliary functions.
-Tests should only use the common priority queue interface and NOT the auxiliary functions that might be defined for each implementation.
-In the same way, test code should not access the structures' inner fields unless you found a bug and you know what you're doing.
+Para compilar los scripts y programas que realizan los tests, basta con ejecutar:
 
-Compilation example: (in src/tests)
+    $ make all
 
-gcc -g -D_BINARY_HEAP pq_basic_test ../structures/binomial_heap.c -o test
+en la carpeta principal (i.e. donde se encuentra el Makefile). Si se quisiera rehacer
+la compilación luego de realizar tests, conviene ejecutar
 
-Extra compilation notes:
+    $ make clean
 
-- Binomial heap requires linking against math library (-lm flag)
+antes de volver a ejecutar make all.
+
+Una vez compilados los programas y copiados los scripts, la carpeta bin contendrá
+los ejecutables. El test de inserciones y deleciones se ejecuta a través del script
+run_global.sh ; el test de merges se ejecuta a través de run_global_merge.sh .
+
+Ambos tests crean archivos de resultados en la carpeta bin/results . Si estos archivos 
+ya existían, los nuevos resultados serán escritos al final de éstos.
+
+Ambos scripts se ejecutan en bash (debido a la forma de iterar usando {a..b}) en vez de simplemente sh.
