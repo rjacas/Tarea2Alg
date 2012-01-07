@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include "../structures/priority_queue.h"
 
-#define timespec_diff(timeA_p, timeB_p) ((timeA_p.tv_sec - timeB_p.tv_sec)*1000 + (timeA_p.tv_nsec - timeB_p.tv_nsec)/1000000)
+#define timespec_diff_ns(timeA_p, timeB_p) ((timeA_p.tv_sec - timeB_p.tv_sec)*1000000000 + (timeA_p.tv_nsec - timeB_p.tv_nsec))
+
+#define timespec_diff_ms(timeA_p, timeB_p) ((timeA_p.tv_sec - timeB_p.tv_sec)*1000 + (timeA_p.tv_nsec - timeB_p.tv_nsec)/1000000)
 
 int int_cmp(const void *a, const void *b) {
 
@@ -81,6 +83,7 @@ int main(int argc, char **argv) {
 
     sorted = atoi(argv[6]);
 
+    printf("foo");
     if (sorted) {
         qsort(elems, 3 * k * n, sizeof(unsigned int), int_cmp); 
     }
@@ -99,8 +102,13 @@ int main(int argc, char **argv) {
         for (j = 0; j < k; j++) pq_insert(pq, elems[idx++]);
     }
     clock_gettime(CLOCK_MONOTONIC, &after);
-    printf("idi: %lldns\t", timespec_diff(after, before));
-   
+
+    if (exp_universe > 20) {
+        printf("idi: %lldms\t", timespec_diff_ms(after, before));
+    } else {
+        printf("idi: %lldns\t", timespec_diff_ns(after, before));
+    }
+
     clock_gettime(CLOCK_MONOTONIC, &before);
     for (i = 0; i < n; i++) {
         for (j = 0; j < k; j++) pq_extract(pq);
@@ -108,8 +116,12 @@ int main(int argc, char **argv) {
         for (j = 0; j < k; j++) pq_extract(pq);
     }
     clock_gettime(CLOCK_MONOTONIC, &after);
-    
-    printf("did: %lldns\n", timespec_diff(after, before));
+ 
+    if (exp_universe > 20) {
+        printf("did: %lldms\t", timespec_diff_ms(after, before));
+    } else {
+        printf("did: %lldns\t", timespec_diff_ns(after, before));
+    }
 
     }
     free(elems);

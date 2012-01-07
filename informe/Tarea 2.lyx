@@ -212,6 +212,43 @@ end{titlepage}
 Descripción del Problema
 \end_layout
 
+\begin_layout Standard
+Un heap binario es quizá la forma más sencilla de implementar una cola de
+ prioridad.
+ Consiste en un árbol que mantiene el invariante estructural de que cada
+ nodo posee un valor mayor al de sus hijos.
+ Esto puede implementarse de forma simple como un arreglo donde los elementos
+ cumplen una propiedad análoga.
+ Si bien esta estructura ofrece buenos tiempos de inserción y extracción,
+ el 
+\emph on
+merge
+\emph default
+ entre dos estructuras de este tipo sólo puede realizarse en tiempo lineal.
+\end_layout
+
+\begin_layout Standard
+Las colas binomiales o 
+\emph on
+Binomial Heaps
+\emph default
+ son estructuras que consisten en un bosque de árboles que permiten tener
+ no sólo costos amortizados logarítmicos para la inserción y extracción
+ del mínimo, sino que también permiten realizar el merge entre estructuras
+ de forma rápida.
+ Una particularidad que poseen es que la forma de la estructura se condice
+ con la representación binaria del número de elementos que almacena.
+\end_layout
+
+\begin_layout Standard
+Un splay tree es una árbol que se autoajusta, de modo de mantenerse relativament
+e balanceado.
+ Esto se logra mediante rotaciones que se ejecutan ante cada acceso, inserción
+ o deleción del árbol, lográndose costos amortizados logarítmicos.
+ Sin embargo, existen ciertos casos (como la inserción de un gran número
+ de elementos ordenados) en los cuales sufre un mal comportamiento.
+\end_layout
+
 \begin_layout Section
 Hipótesis
 \end_layout
