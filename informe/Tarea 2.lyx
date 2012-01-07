@@ -213,6 +213,41 @@ Descripción del Problema
 \end_layout
 
 \begin_layout Standard
+En esta experimentación se busca comparar distintas estructuras que implementan
+ operaciones de una cola de prioridad, como 
+\begin_inset Formula $Insertar(x)$
+\end_inset
+
+, 
+\begin_inset Formula $Borrar(x)$
+\end_inset
+
+, 
+\begin_inset Formula $Extraer(x)$
+\end_inset
+
+, 
+\begin_inset Formula $Min()$
+\end_inset
+
+, 
+\begin_inset Formula $Max()$
+\end_inset
+
+, etc.
+ Además de eso se comparará el 
+\shape italic
+union 
+\shape default
+de dos árboles o estructuras del mismo tipo.
+ 
+\end_layout
+
+\begin_layout Standard
+A continuación una pequeña descripción de cada una de las estructuras:
+\end_layout
+
+\begin_layout Standard
 Un heap binario es quizá la forma más sencilla de implementar una cola de
  prioridad.
  Consiste en un árbol que mantiene el invariante estructural de que cada
@@ -247,6 +282,59 @@ e balanceado.
  o deleción del árbol, lográndose costos amortizados logarítmicos.
  Sin embargo, existen ciertos casos (como la inserción de un gran número
  de elementos ordenados) en los cuales sufre un mal comportamiento.
+\end_layout
+
+\begin_layout Standard
+Un heap de Fibonacci o 
+\shape italic
+Fibonacci Heap
+\shape default
+ es una estructura que básicamente consiste en un bosque de árboles, donde
+ para cada árbol se cumple que todos los hijos de un nodo son mayores o
+ iguales a su padre, sin restricción de cantidad de hijos, y donde la composició
+n del bosque se realiza en forma perezosa.
+ Siempre que ocurre una inserción el nuevo elemento queda como una raíz
+ en el bosque y solo cuando se realiza una extracción del mínimo ocurre
+ una operación de balance (llamada consolidate), que construye árboles a
+ partir de los que ya había en el bosque siguiendo una sola regla, que después
+ de consolidar no queda ningun par de raíces con el mismo grado (el grado
+ es la cantidad de hijos).
+\end_layout
+
+\begin_layout Standard
+Van Emde Boas consiste en un árbol, donde cada padre es llamado árbol 
+\shape italic
+top
+\shape default
+, que guarda el mínimo y máximo entre él y sus hijos (o 
+\shape italic
+bottoms
+\shape default
+), además de la cantidad de elementos que posee él, más lo de sus hijos
+ y finalmente tiene un arreglo con bits, donde se indica si un hijo es vacío
+ o no.
+ Lo fundamental en esta estructura, es que el padre tiene un universo 
+\begin_inset Formula $U$
+\end_inset
+
+, y su cantidad de hijos será 
+\begin_inset Formula $\sqrt{U}$
+\end_inset
+
+, cada uno con universo 
+\begin_inset Formula $\sqrt{U}$
+\end_inset
+
+, así hasta que se llega a las hojas con universo 
+\begin_inset Formula $2$
+\end_inset
+
+.
+ Las operaciones son hechas de tal manera que se logran operaciones en 
+\begin_inset Formula $\mathcal{O}(loglogU)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -1130,7 +1218,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-1-alpha v/s tiempo
+alpha v/s tiempo
 \end_layout
 
 \end_inset
@@ -1180,7 +1268,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-1-alpha v/s tiempo
+alpha v/s tiempo
 \end_layout
 
 \end_inset
