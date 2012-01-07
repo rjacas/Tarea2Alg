@@ -225,29 +225,44 @@ Universo pequeño
 \end_layout
 
 \begin_layout Enumerate
-Binary Heap:
+Binary Heap: La implementación estudiada para el heap binario debiera comportars
+e de acuerdo a lo predicho por la teoría.
+ Debido a que no está pensada para una cierta secuencia de operaciones o
+ alguna frecuencia de éstas, debiera tener un comportamiento similar para
+ ambos tipos de subsecuencia estudiada.
+ Debería observarse un buen comportamiento para las inserciones de elementos
+ ordenados y semiordenados, debido a la forma en que trabaja la estructura;
+ sin embargo, el orden no debiera influir en el tiempo tomado para las extraccio
+nes.
 \end_layout
 
 \begin_layout Enumerate
-Binomial Heap
+Binomial Heap: Dado que el comportamiento de una estructura de colas binomiales
+ depende de la representación binaria de la cantida de elementos en ésta,
+ se espera un comportamiento que pudiera ser irregular.
+ Sin embargo, estas irregularidades debieran verse minimizadas por la gran
+ cantidad de ciclos de inserción y deleción realizados.
+ Como una extracción requiere buscar en todos los árboles de la estructura
+ y luego reajustar la misma, se espera que las subsecuencias con más extraccione
+s tomen más tiempo.
+ El orden de los elementos no debiera influir en el tiempo tomado.
 \end_layout
 
 \begin_layout Enumerate
-Fibonacci Heap: Dada la naturaleza del algoritmos, es totalmente independiente
- de la cantidad inserciones que se realiza, puesto que están toman tiempo
- orden constante (
+Fibonacci Heap: La teoría nos sugiere que el tiempo tomado para las operaciones
+ en esta estructura es independiente de la cantidad de inserciones que se
+ realiza.
+ Esto, debido a que en teoría toman tiempo constante (
 \begin_inset Formula $\mathcal{O}(1)$
 \end_inset
 
-), y de igual manera es relativamente independiente del rango al cual pertenezca
-n los elementos.
- Es de esperarse que el costo del algoritmo este centrado la fase 
-\begin_inset Formula $(d^{k}i^{k}d^{k})^{n}$
-\end_inset
-
-, puesto que es para los borrados donde se realiza el trabajo de ordenamiento,
- es de esperarse que los resultados sean bastante malos dado que el caso
- ideal es el de muchas inserciones y borrados esporádicos.
+)., De igual manera, el tiempo tomado debiera ser relativamente independiente
+ del rango al cual pertenezcan los elementos.
+ Es de esperarse que el costo del algoritmo esté centrado en la fase con
+ más extracciones, puesto que es para los borrados donde se realiza el trabajo
+ de ordenamiento; así, es de esperarse que los resultados sean bastante
+ malos para estas subsecuencias, dado que el caso ideal para la estructura
+ es el de muchas inserciones y borrados esporádicos.
 \end_layout
 
 \begin_layout Enumerate
@@ -279,19 +294,32 @@ de tal manera que vamos guardando una representación de él en los niveles
 \end_layout
 
 \begin_layout Enumerate
-Splay Tree
+Splay Tree: Se espera que exista un mayor costo en las inserciones que en
+ las extracciones, debido a que las rotaciones se simplifican en el caso
+ de bajar siempre por el hijo más izquierdo.
+ Esto sucede porque se realizan más rotaciones dobles, que hacen avanzar
+ rápidamente el algoritmo.
+ Se tiene también que se deben realizar múltiples comparaciones al bajar
+ en el caso de la inserción, lo que debiera agregarle un costo.
 \end_layout
 
 \begin_layout Subsubsection
-Universo grande
+Universo grande 
 \end_layout
 
 \begin_layout Enumerate
-Binary Heap:
+Binary Heap: De nuevo, al no estar pensada la estructura para un cierto
+ universo en particular, se espera una cierta estabilidad para los tiempos
+ tomados por el algoritmo.
+ Una vez más, las inserciones debieran verse favorecidas ante cualquier
+ tipo de orden creciente en los elementos.
 \end_layout
 
 \begin_layout Enumerate
-Binomial Heap
+Binomial Heap: De la misma forma que en el caso anterior, se espera un tiempo
+ de operación mayor para aquellas secuencias de elementos que involucran
+ más extracciones de elementos.
+ No se espera una alteración ante el ordenamiento de elementos.
 \end_layout
 
 \begin_layout Enumerate
@@ -310,12 +338,14 @@ Van Emde Boas: Como el universo es mayor y coincide que el exponente del
  más y más por la estructura.
  Lo mismo para la extracción del mínimo, debemos bajar y subir por la estructura
  muchas veces para reemplazar al mínimo extraído por el nuevo mínimo.
- También deberíamos tener un resultado similar en el caso de inserciones
+ También se debiera tener un resultado similar en el caso de inserciones
  ordenadas.
 \end_layout
 
 \begin_layout Enumerate
-Splay Tree
+Splay Tree: De nuevo, se espera que las subsecuencias con más extracciones
+ sean las más eficientes, debido al ahorro en comparaciones y rotaciones.
+ El mayor tamaño del universo no debiera afectar mayormente a la estructura.
 \end_layout
 
 \begin_layout Subsection
@@ -323,18 +353,38 @@ Union
 \end_layout
 
 \begin_layout Enumerate
-Binary Heap
+Binary Heap: El heap binario debiera tomar mucho más tiempo que las demás
+ estructuras, ya que no está pensada con el fin de realizar esta operación
+ de forma eficiente.
+ El efecto debiera ser mayor en el caso en que las dos estructuras tienen
+ una cantidad de elementos similar; en caso contrario, el número de elementos
+ a copiar se hace menor.
 \end_layout
 
 \begin_layout Enumerate
-Binomial Heap
+Binomial Heap: Las colas binomiales debieran tener un comportamiento regular
+ para la operación de 
+\emph on
+merge
+\emph default
+.
+ Se espera, sin embargo, que no se observe una dependencia clara del tiempo
+ necesario y la diferencia entre los números de elementos de las estructuras.
+ Por otro lado, se espera ver una irregularidad en el comportamiento de
+ esta estructura, debido a que la dependencia temporal se basa en las representa
+ciones binarias del número de elementos de cada estructura.
+ Por ejemplo, el tiempo debiera reducirse cuando el número de elementos
+ en una estructura (o en ambas) es una potencia de 2.
 \end_layout
 
 \begin_layout Enumerate
-Fibonacci Heap: Dado que el algoritmo para Merge consiste básicamente en
- concatenar las listas de elementos de ambas colas de prioridad, el tiempo
- debería ser igual al tiempo que tome establecer el mínimo común entre ambas
- colas pues el resto es orden constante.
+Fibonacci Heap: Dado que el algoritmo para 
+\emph on
+merge 
+\emph default
+consiste básicamente en concatenar las listas de elementos de ambas colas
+ de prioridad, el tiempo debería ser igual al tiempo que tome establecer
+ el mínimo común entre ambas colas pues el resto es orden constante.
 \end_layout
 
 \begin_layout Section
@@ -519,7 +569,15 @@ Se inserta
 \end_inset
 
  en la otra.
- 
+ Se define 
+\begin_inset Formula $\alpha=X/(100-X)$
+\end_inset
+
+, tomando valores en 
+\begin_inset Formula $[0,\ 1]$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -549,6 +607,7 @@ Esto se repite 10 veces.
 Es decir, para cada tamaño de universo se crearon 10 instancias, con cada
  una de las cuales se experimentó 10 veces por cada estructura estudiada,
  con el objetivo de disminuir la incertidumbre asociada a las mediciones.
+ Se utilizaron valores de X en el conjunto {10, 20, 30, 40, 50}.
 \end_layout
 
 \begin_layout Section
@@ -1114,30 +1173,53 @@ Universo pequeño
 \end_layout
 
 \begin_layout Enumerate
-Binary Heap:
+Binary Heap: El heap binario logra un buen rendimiento ante elementos ordenados
+ y semiordenados para las secuencias 
+\begin_inset Formula $(i^{k}d^{k}i^{k})^{n}$
+\end_inset
+
+, como se esperaba.
+ Es notable que mantiene un rendimiento aceptable ante inserciones aleatorias
+ (al compararse con las demás estructuras), posiblemente por la simplicidad
+ de su implementación.
 \end_layout
 
 \begin_layout Enumerate
-Binomial Heap
+Binomial Heap: Las secuencias de la forma 
+\begin_inset Formula $(d^{k}i^{k}d^{k})^{n}$
+\end_inset
+
+ toman, efectivamente, más tiempo.
+ Esto se explica por el doble recorrido que debe hacerse sobre la estructura,
+ buscando el mínimo y luego reajustando los árboles.
 \end_layout
 
 \begin_layout Enumerate
-Fibonacci Heap: Tal y como se esperaba su comportamiento tiende a ser el
+Fibonacci Heap: Tal y como se esperaba, su comportamiento tiende a ser el
  más lento dada la naturaleza de las pruebas, ya que se realiza una gran
  cantidad de operaciones de borrado consecutivas, que son donde se centra
- todo el costo del algoritmo, las inserciones son prácticamente despreciables
- en comparación.
+ todo el costo del algoritmo.
 \end_layout
 
 \begin_layout Enumerate
 Van Emde Boas: Su comportamiento con respecto a las inserciones es similar
- a la hipótesis fundada, agregando que las extracciones de mínimo también
+ a la hipótesis estipulada, agregando que las extracciones de mínimo también
  generan un tiempo extra de ejecución, especialmente cuando los elementos
  son insertados de forma ordenada.
 \end_layout
 
 \begin_layout Enumerate
-Splay Tree
+Splay Tree: En efecto, las secuencias tipo 
+\begin_inset Formula $(i^{k}d^{k}i^{k})^{n}$
+\end_inset
+
+ toman más tiempo, debido a las diferentes rotaciones necesarias y las comparaci
+ones que se deben realizar para encontrar el lugar de inserción.
+ Es interesante que el caso de elementos ordenados no muestre mayor variación,
+ siendo el que supuestamente debería ser un mal caso para esta estructura.
+ Esto puede ser explicado de la siguiente forma: si bien es posible que
+ la primera extracción sea lenta, la operación reestructurará el árbol de
+ forma que las siguientes serán mucho más rápidas.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1145,17 +1227,21 @@ Universo grande
 \end_layout
 
 \begin_layout Enumerate
-Binary Heap:
+Binary Heap: El comportamiento de la estructura es similar al comentado
+ para el universo pequeño.
+ Se comprueba que no existen cambios significativos con respecto al caso
+ anterior.
 \end_layout
 
 \begin_layout Enumerate
-Binomial Heap
+Binomial Heap: De nuevo, las subsecuencias con mayor número de extracciones
+ son las que acaparan el tiempo tomado por el algoritmo.
 \end_layout
 
 \begin_layout Enumerate
 Fibonacci Heap: Nuevamente se comprueba que el algoritmo esta incurriendo
  en su peor caso, obviando el costo constante de las inserciones, y que
- se comporta como el peor de todos.
+ se comporta como el peor elem de todos.
 \end_layout
 
 \begin_layout Enumerate
@@ -1167,7 +1253,12 @@ Van Emde Boas: En este caso se nota aún más lo dicho en la hipótesis, teniend
 \end_layout
 
 \begin_layout Enumerate
-Splay Tree
+Splay Tree: No se observan mayores variaciones: las secuencias tipo 
+\begin_inset Formula $(i^{k}d^{k}i^{k})^{n}$
+\end_inset
+
+ siguen tomando más tiempo y, de hecho, el caso ordenado parece ser el más
+ rápido.
 \end_layout
 
 \begin_layout Subsection
@@ -1175,17 +1266,41 @@ Union
 \end_layout
 
 \begin_layout Enumerate
-Binary Heap
+Binary Heap: Como se esperaba, resulta ser la estructura más lenta de las
+ tres.
+ Se observa además el comportamiento esperado, tomándose más tiempo cuando
+ las estructuras tienen números de elementos similares.
 \end_layout
 
 \begin_layout Enumerate
-Binomial Heap
+Binomial Heap: El comportamiento es errático, como se esperaba.
+ Se observa una marcada baja en el tiempo cuando la cantidad de elementos
+ es idéntica para ambas estructuras, lo que se explica al recordar que el
+ número total de elementos es una potencia de 2; al dividirse en 2 esta
+ cantidad, ambas estructuras tendrán una cantidad de elementos que será
+ una potencia de 2, minimizando el tiempo de 
+\emph on
+merge
+\emph default
+.
 \end_layout
 
 \begin_layout Enumerate
 Fibonacci Heap: El resultado muestra que, a diferencia que para el experimento
- de sucesivas inserciones y borrados, el comportamiento para Merge es el
- más optimo entre los algoritmos analizados.
+ de sucesivas inserciones y borrados, el comportamiento para 
+\emph on
+merge
+\emph default
+ logra el mínimo tiempo de entre los algoritmos analizados.
+ Esto se da debido a la 
+\emph on
+laziness
+\emph default
+ inherente al heap de Fibonacci, que le permite realizar el 
+\emph on
+merge 
+\emph default
+en tiempo constante.
 \end_layout
 
 \begin_layout Section
@@ -4168,19 +4283,18 @@ Union
 \end_layout
 
 \begin_layout Standard
-Notación:
-\end_layout
+Nota: 
+\begin_inset Formula $\alpha$
+\end_inset
 
-\begin_layout Itemize
-alpha: Corresponde a la distribución de los elementos en cada árbol que
- participa en el 
+ corresponde a la distribución de los elementos en cada árbol que participa
+ en el 
 \begin_inset Formula $union$
 \end_inset
 
-
+:
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 10/90 : el 
 \begin_inset Formula $10\%$
@@ -4193,6 +4307,7 @@ alpha: Corresponde a la distribución de los elementos en cada árbol que
  restante en el otro
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 20/80 : el 
 \begin_inset Formula $20\%$
@@ -4290,7 +4405,10 @@ begin{center}
 \begin_inset Text
 
 \begin_layout Plain Layout
-alpha
+\begin_inset Formula $\alpha$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4601,7 +4719,10 @@ begin{center}
 \begin_inset Text
 
 \begin_layout Plain Layout
-alpha
+\begin_inset Formula $\alpha$
+\end_inset
+
+
 \end_layout
 
 \end_inset
